@@ -22,6 +22,10 @@ and one fixed link will be added for the tip. -->
   <!-- ============================================================================= -->
   <!-- ============================================================================= -->
   <!-- BASE -->
+  <mujoco>
+    <compiler meshdir=".\meshes" balanceinertia="false" discardvisual="false"/>
+  </mujoco>
+
   <link name="base_link">
     <visual>
       <geometry>
