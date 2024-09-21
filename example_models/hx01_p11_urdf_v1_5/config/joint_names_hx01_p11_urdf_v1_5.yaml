@@ -1,0 +1,1 @@
+controller_joint_names: ['', 'joint1_F1_MCPAbAd', 'joint2_F1_MCPFlex', 'joint3_F1_PIP', 'joint4_F1_DIP', 'joint5_F2_MCPAbAd', 'joint6_F2_MCPFlex', 'joint7_F2_PIP', 'joint8_F2_DIP', 'joint9_F3_MCPAbAd', 'joint10_F3_MCPFlex', 'joint11_F3_PIP', 'joint12_F3_DIP', ]

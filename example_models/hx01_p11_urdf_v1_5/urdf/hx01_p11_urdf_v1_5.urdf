@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="hx01_p11_urdf_v1_5">
+  <mujoco>
+    <compiler meshdir="..\meshes" balanceinertia="false" discardvisual="false"/>
+  </mujoco>
+
+  <link
+    name="hx01_hand_base_link">
+    <inertial>
+      <origin
+        xyz="0.00054804 -0.0010883 -0.024366"
+        rpy="0 0 0" />
+      <mass
+        value="0.27267" />
+      <inertia
+        ixx="0.00011167"
+        ixy="1.523E-08"
+        ixz="-1.3818E-07"
+        iyy="9.5051E-05"
+        iyz="-2.3852E-06"
+        izz="0.0001569" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/hx01_hand_base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/hx01_hand_base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="link1_F1_Ujoint">
+    <inertial>
+      <origin
+        xyz="3.4029E-05 0 0.0035961"
+        rpy="0 0 0" />
+      <mass
+        value="0.0061837" />
+      <inertia
+        ixx="2.2434E-07"
+        ixy="-3.8637E-23"
+        ixz="-1.9788E-09"
+        iyy="5.4172E-07"
+        iyz="7.1018E-24"
+        izz="3.9017E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link1_F1_Ujoint.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link1_F1_Ujoint.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint1_F1_MCPAbAd"
+    type="revolute">
+    <origin
+      xyz="0 -0.026 -0.005"
+      rpy="0 0 0" />
+    <parent
+      link="hx01_hand_base_link" />
+    <child
+      link="link1_F1_Ujoint" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.571"
+      upper="1.571"
+      effort="100"
+      velocity="50" />
+  </joint>
+  <link
+    name="link2_F1_Proximal">
+    <inertial>
+      <origin
+        xyz="2.6493E-06 -0.0098301 0.010587"
+        rpy="0 0 0" />
+      <mass
+        value="0.0095795" />
+      <inertia
+        ixx="1.363E-06"
+        ixy="1.6403E-10"
+        ixz="5.3694E-10"
+        iyy="1.3386E-06"
+        iyz="-2.7724E-07"
+        izz="3.7875E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link2_F1_Proximal.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 0.50196 0.50196 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link2_F1_Proximal.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint2_F1_MCPFlex"
+    type="revolute">
+    <origin
+      xyz="0 0 0.013"
+      rpy="0 0 0" />
+    <parent
+      link="link1_F1_Ujoint" />
+    <child
+      link="link2_F1_Proximal" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="0"
+      upper="2.094"
+      effort="100"
+      velocity="50" />
+  </joint>
+  <link
+    name="link3_F1_Intermediate">
+    <inertial>
+      <origin
+        xyz="4.9352E-06 -0.010536 0.006551"
+        rpy="0 0 0" />
+      <mass
+        value="0.010285" />
+      <inertia
+        ixx="1.2728E-06"
+        ixy="-1.329E-10"
+        ixz="-9.1045E-10"
+        iyy="1.2238E-06"
+        iyz="-2.2669E-07"
+        izz="4.0861E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link3_F1_Intermediate.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 1 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link3_F1_Intermediate.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint3_F1_PIP"
+    type="revolute">
+    <origin
+      xyz="0 0 0.035"
+      rpy="0 0 0" />
+    <parent
+      link="link2_F1_Proximal" />
+    <child
+      link="link3_F1_Intermediate" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.571"
+      upper="0"
+      effort="100"
+      velocity="50" />
+  </joint>
+  <link
+    name="link4_F1_Distal">
+    <inertial>
+      <origin
+        xyz="2.6322E-09 -0.003231 0.014697"
+        rpy="0 0 0" />
+      <mass
+        value="0.0060356" />
+      <inertia
+        ixx="6.7963E-07"
+        ixy="-6.2431E-14"
+        ixz="-2.7537E-14"
+        iyy="6.5098E-07"
+        iyz="-1.1436E-07"
+        izz="2.3015E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link4_F1_Distal.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.50196 0.50196 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link4_F1_Distal.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint4_F1_DIP"
+    type="revolute">
+    <origin
+      xyz="0 0 0.03"
+      rpy="0 0 0" />
+    <parent
+      link="link3_F1_Intermediate" />
+    <child
+      link="link4_F1_Distal" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.571"
+      upper="0"
+      effort="100"
+      velocity="50" />
+  </joint>
+  <link
+    name="link5_F2_Ujoint">
+    <inertial>
+      <origin
+        xyz="-3.4029E-05 0.0035961 1.8871E-18"
+        rpy="0 0 0" />
+      <mass
+        value="0.0061837" />
+      <inertia
+        ixx="2.2434E-07"
+        ixy="1.9788E-09"
+        ixz="2.5877E-23"
+        iyy="3.9017E-07"
+        iyz="2.885E-23"
+        izz="5.4172E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link5_F2_Ujoint.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link5_F2_Ujoint.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint5_F2_MCPAbAd"
+    type="revolute">
+    <origin
+      xyz="0.02 0.031 -0.005"
+      rpy="0 0 0" />
+    <parent
+      link="hx01_hand_base_link" />
+    <child
+      link="link5_F2_Ujoint" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.571"
+      upper="0.3"
+      effort="100"
+      velocity="50" />
+  </joint>
+  <link
+    name="link6_F2_Proximal">
+    <inertial>
+      <origin
+        xyz="-2.6493E-06 0.010587 -0.0098301"
+        rpy="0 0 0" />
+      <mass
+        value="0.0095795" />
+      <inertia
+        ixx="1.363E-06"
+        ixy="-5.3694E-10"
+        ixz="-1.6403E-10"
+        iyy="3.7875E-07"
+        iyz="-2.7724E-07"
+        izz="1.3386E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link6_F2_Proximal.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 0.50196 0.50196 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link6_F2_Proximal.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint6_F2_MCPFlex"
+    type="revolute">
+    <origin
+      xyz="0 0.013 0"
+      rpy="0 0 0" />
+    <parent
+      link="link5_F2_Ujoint" />
+    <child
+      link="link6_F2_Proximal" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0"
+      upper="2.094"
+      effort="100"
+      velocity="50" />
+  </joint>
+  <link
+    name="link7_F2_Intermediate">
+    <inertial>
+      <origin
+        xyz="-4.9352E-06 0.006551 -0.010536"
+        rpy="0 0 0" />
+      <mass
+        value="0.010285" />
+      <inertia
+        ixx="1.2728E-06"
+        ixy="9.1045E-10"
+        ixz="1.329E-10"
+        iyy="4.0861E-07"
+        iyz="-2.2669E-07"
+        izz="1.2238E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link7_F2_Intermediate.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 1 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link7_F2_Intermediate.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint7_F2_PIP"
+    type="revolute">
+    <origin
+      xyz="0 0.035 0"
+      rpy="0 0 0" />
+    <parent
+      link="link6_F2_Proximal" />
+    <child
+      link="link7_F2_Intermediate" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-1.571"
+      upper="0"
+      effort="100"
+      velocity="50" />
+  </joint>
+  <link
+    name="link8_F2_Distal">
+    <inertial>
+      <origin
+        xyz="-2.6322E-09 0.014697 -0.003231"
+        rpy="0 0 0" />
+      <mass
+        value="0.0060356" />
+      <inertia
+        ixx="6.7963E-07"
+        ixy="2.7537E-14"
+        ixz="6.2431E-14"
+        iyy="2.3015E-07"
+        iyz="-1.1436E-07"
+        izz="6.5098E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link8_F2_Distal.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.50196 0.50196 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link8_F2_Distal.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint8_F2_DIP"
+    type="revolute">
+    <origin
+      xyz="0 0.03 0"
+      rpy="0 0 0" />
+    <parent
+      link="link7_F2_Intermediate" />
+    <child
+      link="link8_F2_Distal" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-1.571"
+      upper="0"
+      effort="100"
+      velocity="50" />
+  </joint>
+  <link
+    name="link9_F3_Ujoint">
+    <inertial>
+      <origin
+        xyz="-3.4029E-05 0.0035961 3.6746E-18"
+        rpy="0 0 0" />
+      <mass
+        value="0.0061837" />
+      <inertia
+        ixx="2.2434E-07"
+        ixy="1.9788E-09"
+        ixz="1.7966E-23"
+        iyy="3.9017E-07"
+        iyz="2.7208E-23"
+        izz="5.4172E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link9_F3_Ujoint.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link9_F3_Ujoint.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint9_F3_MCPAbAd"
+    type="revolute">
+    <origin
+      xyz="-0.02 0.031 -0.005"
+      rpy="0 0 0" />
+    <parent
+      link="hx01_hand_base_link" />
+    <child
+      link="link9_F3_Ujoint" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.3"
+      upper="1.571"
+      effort="100"
+      velocity="50" />
+  </joint>
+  <link
+    name="link10_F3_Proximal">
+    <inertial>
+      <origin
+        xyz="-2.6493E-06 0.010587 -0.0098301"
+        rpy="0 0 0" />
+      <mass
+        value="0.0095795" />
+      <inertia
+        ixx="1.363E-06"
+        ixy="-5.3694E-10"
+        ixz="-1.6403E-10"
+        iyy="3.7875E-07"
+        iyz="-2.7724E-07"
+        izz="1.3386E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link10_F3_Proximal.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 0.50196 0.50196 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link10_F3_Proximal.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint10_F3_MCPFlex"
+    type="revolute">
+    <origin
+      xyz="0 0.013 0"
+      rpy="0 0 0" />
+    <parent
+      link="link9_F3_Ujoint" />
+    <child
+      link="link10_F3_Proximal" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0"
+      upper="2.097"
+      effort="100"
+      velocity="50" />
+  </joint>
+  <link
+    name="link11_F3_Intermediate">
+    <inertial>
+      <origin
+        xyz="-4.9352E-06 0.006551 -0.010536"
+        rpy="0 0 0" />
+      <mass
+        value="0.010285" />
+      <inertia
+        ixx="1.2728E-06"
+        ixy="9.1045E-10"
+        ixz="1.329E-10"
+        iyy="4.0861E-07"
+        iyz="-2.2669E-07"
+        izz="1.2238E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link11_F3_Intermediate.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 1 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link11_F3_Intermediate.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint11_F3_PIP"
+    type="revolute">
+    <origin
+      xyz="0 0.035 0"
+      rpy="0 0 0" />
+    <parent
+      link="link10_F3_Proximal" />
+    <child
+      link="link11_F3_Intermediate" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-1.571"
+      upper="0"
+      effort="100"
+      velocity="50" />
+  </joint>
+  <link
+    name="link12_F3_Distal">
+    <inertial>
+      <origin
+        xyz="-2.6322E-09 0.014697 -0.003231"
+        rpy="0 0 0" />
+      <mass
+        value="0.0060356" />
+      <inertia
+        ixx="6.7963E-07"
+        ixy="2.7537E-14"
+        ixz="6.2431E-14"
+        iyy="2.3015E-07"
+        iyz="-1.1436E-07"
+        izz="6.5098E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link12_F3_Distal.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.50196 0.50196 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hx01_p11_urdf_v1_5/meshes/link12_F3_Distal.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint12_F3_DIP"
+    type="revolute">
+    <origin
+      xyz="0 0.03 0"
+      rpy="0 0 0" />
+    <parent
+      link="link11_F3_Intermediate" />
+    <child
+      link="link12_F3_Distal" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-1.571"
+      upper="0"
+      effort="100"
+      velocity="50" />
+  </joint>
+</robot>

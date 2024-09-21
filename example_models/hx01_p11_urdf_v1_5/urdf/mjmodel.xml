@@ -1,0 +1,96 @@
+<mujoco model="hx01_p11_urdf_v1_5">
+  <compiler angle="radian" meshdir="..\meshes/"/>
+
+  <asset>
+    <mesh name="hx01_hand_base_link" file="hx01_hand_base_link.STL"/>
+    <mesh name="link1_F1_Ujoint" file="link1_F1_Ujoint.STL"/>
+    <mesh name="link2_F1_Proximal" file="link2_F1_Proximal.STL"/>
+    <mesh name="link3_F1_Intermediate" file="link3_F1_Intermediate.STL"/>
+    <mesh name="link4_F1_Distal" file="link4_F1_Distal.STL"/>
+    <mesh name="link5_F2_Ujoint" file="link5_F2_Ujoint.STL"/>
+    <mesh name="link6_F2_Proximal" file="link6_F2_Proximal.STL"/>
+    <mesh name="link7_F2_Intermediate" file="link7_F2_Intermediate.STL"/>
+    <mesh name="link8_F2_Distal" file="link8_F2_Distal.STL"/>
+    <mesh name="link9_F3_Ujoint" file="link9_F3_Ujoint.STL"/>
+    <mesh name="link10_F3_Proximal" file="link10_F3_Proximal.STL"/>
+    <mesh name="link11_F3_Intermediate" file="link11_F3_Intermediate.STL"/>
+    <mesh name="link12_F3_Distal" file="link12_F3_Distal.STL"/>
+  </asset>
+
+  <worldbody>
+    <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.89804 0.91765 0.92941 1" mesh="hx01_hand_base_link"/>
+    <geom type="mesh" rgba="0.89804 0.91765 0.92941 1" mesh="hx01_hand_base_link"/>
+    <body name="link1_F1_Ujoint" pos="0 -0.026 -0.005">
+      <inertial pos="3.4029e-05 0 0.0035961" quat="0.502974 0.497009 0.497009 0.502974" mass="0.0061837" diaginertia="5.4172e-07 3.90194e-07 2.24316e-07"/>
+      <joint name="joint1_F1_MCPAbAd" pos="0 0 0" axis="0 1 0" range="-1.571 1.571" actuatorfrcrange="-100 100"/>
+      <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.89804 0.91765 0.92941 1" mesh="link1_F1_Ujoint"/>
+      <geom type="mesh" rgba="0.89804 0.91765 0.92941 1" mesh="link1_F1_Ujoint"/>
+      <body name="link2_F1_Proximal" pos="0 0 0.013">
+        <inertial pos="2.6493e-06 -0.0098301 0.010587" quat="0.701164 -0.0925422 0.0921347 0.70094" mass="0.0095795" diaginertia="1.41292e-06 1.363e-06 3.04427e-07"/>
+        <joint name="joint2_F1_MCPFlex" pos="0 0 0" axis="-1 0 0" range="0 2.094" actuatorfrcrange="-100 100"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 0.50196 0.50196 1" mesh="link2_F1_Proximal"/>
+        <geom type="mesh" rgba="1 0.50196 0.50196 1" mesh="link2_F1_Proximal"/>
+        <body name="link3_F1_Intermediate" pos="0 0 0.035">
+          <inertial pos="4.9352e-06 -0.010536 0.006551" quat="0.705034 -0.0895943 0.0893767 0.697791" mass="0.010285" diaginertia="1.2826e-06 1.2728e-06 3.49812e-07"/>
+          <joint name="joint3_F1_PIP" pos="0 0 0" axis="1 0 0" range="-1.571 0" actuatorfrcrange="-100 100"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.75294 1 0.75294 1" mesh="link3_F1_Intermediate"/>
+          <geom type="mesh" rgba="0.75294 1 0.75294 1" mesh="link3_F1_Intermediate"/>
+          <body name="link4_F1_Distal" pos="0 0 0.03">
+            <inertial pos="2.6322e-09 -0.003231 0.014697" quat="0.701637 -0.087779 0.087779 0.701637" mass="0.0060356" diaginertia="6.80049e-07 6.7963e-07 2.01081e-07"/>
+            <joint name="joint4_F1_DIP" pos="0 0 0" axis="1 0 0" range="-1.571 0" actuatorfrcrange="-100 100"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.50196 0.50196 1 1" mesh="link4_F1_Distal"/>
+            <geom type="mesh" rgba="0.50196 0.50196 1 1" mesh="link4_F1_Distal"/>
+          </body>
+        </body>
+      </body>
+    </body>
+    <body name="link5_F2_Ujoint" pos="0.02 0.031 -0.005">
+      <inertial pos="-3.4029e-05 0.0035961 0" quat="0.00421802 0.707094 -0.00421802 0.707094" mass="0.0061837" diaginertia="5.4172e-07 3.90194e-07 2.24316e-07"/>
+      <joint name="joint5_F2_MCPAbAd" pos="0 0 0" axis="0 0 1" range="-1.571 0.3" actuatorfrcrange="-100 100"/>
+      <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.89804 0.91765 0.92941 1" mesh="link5_F2_Ujoint"/>
+      <geom type="mesh" rgba="0.89804 0.91765 0.92941 1" mesh="link5_F2_Ujoint"/>
+      <body name="link6_F2_Proximal" pos="0 0.013 0">
+        <inertial pos="-2.6493e-06 0.010587 -0.0098301" quat="0.43049 0.560788 -0.561235 0.43036" mass="0.0095795" diaginertia="1.41292e-06 1.363e-06 3.04427e-07"/>
+        <joint name="joint6_F2_MCPFlex" pos="0 0 0" axis="1 0 0" range="0 2.094" actuatorfrcrange="-100 100"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 0.50196 0.50196 1" mesh="link6_F2_Proximal"/>
+        <geom type="mesh" rgba="1 0.50196 0.50196 1" mesh="link6_F2_Proximal"/>
+        <body name="link7_F2_Intermediate" pos="0 0.035 0">
+          <inertial pos="-4.9352e-06 0.006551 -0.010536" quat="0.430214 0.556611 -0.561887 0.435181" mass="0.010285" diaginertia="1.2826e-06 1.2728e-06 3.49812e-07"/>
+          <joint name="joint7_F2_PIP" pos="0 0 0" axis="-1 0 0" range="-1.571 0" actuatorfrcrange="-100 100"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.75294 1 0.75294 1" mesh="link7_F2_Intermediate"/>
+          <geom type="mesh" rgba="0.75294 1 0.75294 1" mesh="link7_F2_Intermediate"/>
+          <body name="link8_F2_Distal" pos="0 0.03 0">
+            <inertial pos="-2.6322e-09 0.014697 -0.003231" quat="0.434063 0.558202 -0.558202 0.434063" mass="0.0060356" diaginertia="6.80049e-07 6.7963e-07 2.01081e-07"/>
+            <joint name="joint8_F2_DIP" pos="0 0 0" axis="-1 0 0" range="-1.571 0" actuatorfrcrange="-100 100"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.50196 0.50196 1 1" mesh="link8_F2_Distal"/>
+            <geom type="mesh" rgba="0.50196 0.50196 1 1" mesh="link8_F2_Distal"/>
+          </body>
+        </body>
+      </body>
+    </body>
+    <body name="link9_F3_Ujoint" pos="-0.02 0.031 -0.005">
+      <inertial pos="-3.4029e-05 0.0035961 0" quat="0.00421802 0.707094 -0.00421802 0.707094" mass="0.0061837" diaginertia="5.4172e-07 3.90194e-07 2.24316e-07"/>
+      <joint name="joint9_F3_MCPAbAd" pos="0 0 0" axis="0 0 1" range="-0.3 1.571" actuatorfrcrange="-100 100"/>
+      <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.89804 0.91765 0.92941 1" mesh="link9_F3_Ujoint"/>
+      <geom type="mesh" rgba="0.89804 0.91765 0.92941 1" mesh="link9_F3_Ujoint"/>
+      <body name="link10_F3_Proximal" pos="0 0.013 0">
+        <inertial pos="-2.6493e-06 0.010587 -0.0098301" quat="0.43049 0.560788 -0.561235 0.43036" mass="0.0095795" diaginertia="1.41292e-06 1.363e-06 3.04427e-07"/>
+        <joint name="joint10_F3_MCPFlex" pos="0 0 0" axis="1 0 0" range="0 2.097" actuatorfrcrange="-100 100"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 0.50196 0.50196 1" mesh="link10_F3_Proximal"/>
+        <geom type="mesh" rgba="1 0.50196 0.50196 1" mesh="link10_F3_Proximal"/>
+        <body name="link11_F3_Intermediate" pos="0 0.035 0">
+          <inertial pos="-4.9352e-06 0.006551 -0.010536" quat="0.430214 0.556611 -0.561887 0.435181" mass="0.010285" diaginertia="1.2826e-06 1.2728e-06 3.49812e-07"/>
+          <joint name="joint11_F3_PIP" pos="0 0 0" axis="-1 0 0" range="-1.571 0" actuatorfrcrange="-100 100"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.75294 1 0.75294 1" mesh="link11_F3_Intermediate"/>
+          <geom type="mesh" rgba="0.75294 1 0.75294 1" mesh="link11_F3_Intermediate"/>
+          <body name="link12_F3_Distal" pos="0 0.03 0">
+            <inertial pos="-2.6322e-09 0.014697 -0.003231" quat="0.434063 0.558202 -0.558202 0.434063" mass="0.0060356" diaginertia="6.80049e-07 6.7963e-07 2.01081e-07"/>
+            <joint name="joint12_F3_DIP" pos="0 0 0" axis="-1 0 0" range="-1.571 0" actuatorfrcrange="-100 100"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.50196 0.50196 1 1" mesh="link12_F3_Distal"/>
+            <geom type="mesh" rgba="0.50196 0.50196 1 1" mesh="link12_F3_Distal"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>
