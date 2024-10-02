@@ -1,5 +1,5 @@
 <mujoco model="eg01_P5_5_sw2urdf scene">
-  <include file="eg01p55_mjmodel.xml"/>
+  <include file="eg01p5_5_mjmodel.xml"/>
 
   <!-- Add some fluid viscosity to prevent the hanging box from jiggling forever -->
   <option viscosity="0.5"/>

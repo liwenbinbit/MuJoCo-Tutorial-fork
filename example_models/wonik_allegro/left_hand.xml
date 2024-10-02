@@ -1,5 +1,7 @@
 <!-- Notes: 
-    group 2 is for visual, group 3 is for collision
+    geom group 2 is for visual, group 3 is for collision
+    group 1 not found here, not found in right_hand, scene_left, scene_right (?)
+    group 0 is by default the scene, and this is verified in the GUI
      -->
 
 <mujoco model="allegro_left">
@@ -17,7 +19,7 @@
   which is then modulated by this attribute. Settings larger than 1 cause friction forces to be “harder” than normal forces, having the general effect of preventing slip, 
   without increasing the actual friction coefficient. For pyramidal friction cones the situation is more complex because the pyramidal approximation mixes normal and frictional dimensions within each basis vector; 
   it is not recommended to use high impratio values with pyramidal cones. -->
-  
+
   <!-- solref, solimp: Constraint solver parameters for contact simulation. -->
 
   <default>
@@ -25,6 +27,7 @@
       <joint axis="0 1 0" damping=".1"/>
       <position kp="1"/>
       <geom density="800"/>
+      <!-- The internal default of 1000 is the density of water in SI units.  -->
 
       <default class="visual">
         <geom type="mesh" contype="0" conaffinity="0" group="2" material="black"/>
@@ -142,6 +145,7 @@
 
   <worldbody>
     <body name="palm" quat="0 1 0 1" childclass="allegro_left">
+      <!-- This childclass applies to all descendant elements, it contains joint axis, joint damping, pos kp and geom density -->
       <geom quat="1 -1 0 0" class="palm_visual" mesh="base_link_left"/>
       <geom class="palm_collision"/>  
       <!-- ^ this class contains group="3" type="box" mass="0", geom size and pos -->
