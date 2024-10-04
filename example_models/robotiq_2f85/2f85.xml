@@ -1,3 +1,5 @@
+<!-- according to this xml and visually checking in the simulator, group0 is the secene, group 2 (visual) is the gripper parts, group3 is the collsion (can show the hull) 
+group 5 is a site name='pinch', however, it seems not in use and not showing in the simulator-->
 <mujoco model="robotiq_2f85">
   <compiler angle="radian" meshdir="assets" autolimits="true"/>
 
@@ -39,21 +41,21 @@ it is not recommended to use high impratio values with pyramidal cones. -->
       <mesh scale="0.001 0.001 0.001"/>
       <general biastype="affine"/>
       <joint axis="1 0 0"/>            
-<!-- default>general>biastype 
-default/⁠general (?)
-This element sets the attributes of the dummy general element of the defaults class.
-All general attributes are available here except: name, class, joint, jointinparent, site, refsite, tendon, slidersite, cranksite.
-actuator>general>biastype [none, affine, muscle, user], “none”
-"none" > bias_term = 0
-"affine" > bias_term = biasprm[0] + biasprm[1]*length + biasprm[2]*velocity (affine - 仿射的)
-"muscle" > bias_term = mju_muscleBias(…)
-"user" > bias_term = mjcb_act_bias(…)
+        <!-- default>general>biastype 
+        default/⁠general (?)
+        This element sets the attributes of the dummy general element of the defaults class.
+        All general attributes are available here except: name, class, joint, jointinparent, site, refsite, tendon, slidersite, cranksite.
+        actuator>general>biastype [none, affine, muscle, user], “none”
+        "none" > bias_term = 0
+        "affine" > bias_term = biasprm[0] + biasprm[1]*length + biasprm[2]*velocity (affine - 仿射的)
+        "muscle" > bias_term = mju_muscleBias(…)
+        "user" > bias_term = mjcb_act_bias(…)
 
-biasprm: real(10), “0 … 0”
-Bias parameters. The affine bias type uses three parameters. 
-The length of this array is not enforced by the parser, so the user can enter as many parameters as needed. 
-These defaults are not compatible with muscle actuators; 
--->
+        biasprm: real(10), “0 … 0”
+        Bias parameters. The affine bias type uses three parameters. 
+        The length of this array is not enforced by the parser, so the user can enter as many parameters as needed. 
+        These defaults are not compatible with muscle actuators; 
+        -->
       <default class="driver">
         <joint range="0 0.8" armature="0.005" damping="0.1" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
       </default>
@@ -66,43 +68,52 @@ These defaults are not compatible with muscle actuators;
       <default class="coupler">
         <joint range="-1.57 0" armature="0.001" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
       </default>
-<!-- body > joint > armature (armature - 电枢)
-armature: real, “0”
-Armature inertia (or rotor inertia, or reflected inertia) of all degrees of freedom created by this joint. 
-These are constants added to the diagonal of the inertia matrix in generalized coordinates. 
-They make the simulation more stable, and often increase physical realism. 
-This is because when a motor is attached to the system with a transmission that amplifies the motor force by c, 
-the inertia of the rotor (i.e., the moving part of the motor) is amplified by c*c. 
-The same holds for gears in the early stages of planetary gear boxes. 
-These extra inertias often dominate the inertias of the robot parts that are represented explicitly in the model, and the armature attribute is the way to model them.
--->
+        <!-- body > joint > armature (armature - 电枢)
+        armature: real, “0”
+        Armature inertia (or rotor inertia, or reflected inertia) of all degrees of freedom created by this joint. 
+        These are constants added to the diagonal of the inertia matrix in generalized coordinates. 
+        They make the simulation more stable, and often increase physical realism. 
+        This is because when a motor is attached to the system with a transmission that amplifies the motor force by c, 
+        the inertia of the rotor (i.e., the moving part of the motor) is amplified by c*c. 
+        The same holds for gears in the early stages of planetary gear boxes. 
+        These extra inertias often dominate the inertias of the robot parts that are represented explicitly in the model, and the armature attribute is the way to model them.
+        -->
 
-<!-- body > joint > damping
-damping: real, “0”
-Damping applied to all degrees of freedom created by this joint. Unlike friction loss which is computed by the constraint solver, 
-damping is simply a force linear in velocity. It is included in the passive forces. Despite this simplicity, 
-larger damping values can make numerical integrators unstable, which is why our Euler integrator handles damping implicitly.
--->
+        <!-- body > joint > damping
+        damping: real, “0”
+        Damping applied to all degrees of freedom created by this joint. Unlike friction loss which is computed by the constraint solver, 
+        damping is simply a force linear in velocity. It is included in the passive forces. Despite this simplicity, 
+        larger damping values can make numerical integrators unstable, which is why our Euler integrator handles damping implicitly.
+        -->
 
-<!-- The solver Parameters section of the Computation chapter explained the mathematical and algorithmic meaning of the quantities d,b,k
-which determine the behavior of the constraints in MuJoCo. Here we explain how to set them. Setting is done indirectly, 
-through the attributes solref and solimp which are available in all MJCF elements involving constraints. 
-These parameters can be adjusted per constraint, or per defaults class, or left undefined – in which case MuJoCo uses the internal defaults.  
-impedance d∈(0,1);  stiffness k and damping b
--->
+        <!-- The solver Parameters section of the Computation chapter explained the mathematical and algorithmic meaning of the quantities d,b,k
+        which determine the behavior of the constraints in MuJoCo. Here we explain how to set them. Setting is done indirectly, 
+        through the attributes solref and solimp which are available in all MJCF elements involving constraints. 
+        These parameters can be adjusted per constraint, or per defaults class, or left undefined – in which case MuJoCo uses the internal defaults.  
+        impedance d∈(0,1);  stiffness k and damping b
+        -->
       <default class="visual">
         <geom type="mesh" contype="0" conaffinity="0" group="2"/>
       </default>
+      <!-- group2 is visual and it seems applied to all the gripper parts, contype and conaffinity are two parameters that filters the dynamically generated contact pairs 
+      Two geoms can collide if the contype of one geom is compatible with the conaffinity of the other geom or vice versa. Compatible means that the two bitmasks have a common bit set to 1.-->
+
       <default class="collision">
         <geom type="mesh" group="3"/>
+        <!-- first, all collsions are included in group3 -->
         <default class="pad_box1">
           <geom mass="0" type="box" pos="0 -0.0026 0.028125" size="0.011 0.004 0.009375" friction="0.7"
             solimp="0.95 0.99 0.001" solref="0.004 1" priority="1" rgba="0.55 0.55 0.55 1"/>
         </default>
+
         <default class="pad_box2">
           <geom mass="0" type="box" pos="0 -0.0026 0.009375" size="0.011 0.004 0.009375" friction="0.6"
             solimp="0.95 0.99 0.001" solref="0.004 1" priority="1" rgba="0.45 0.45 0.45 1"/>
-        </default>
+        </default>    
+        <!-- two pad_box subclasses under collision class, the only difference are pos, friction and color, I figure it must be the two layers of the fingertip pad, made of rubber and metal -->
+        <!-- body>geom>friction real(3), “1 0.005 0.0001”, Contact friction parameters for dynamically generated contact pairs. The first number is the sliding friction, acting along both axes of the tangent plane. 
+        The second number is the torsional friction, acting around the contact normal. The third number is the rolling friction, acting around both axes of the tangent plane. 
+        The friction parameters for the contact pair are combined depending on the solmix and priority attributes, as explained in Contact parameters.  -->
       </default>
     </default>
   </default>
@@ -111,12 +122,14 @@ impedance d∈(0,1);  stiffness k and damping b
     <body name="base_mount" pos="0 0 0.007" childclass="2f85">
       <geom class="visual" mesh="base_mount" material="black"/>
       <geom class="collision" mesh="base_mount"/>
+      <!-- ^first body, the base_mount, in the class "2f85" with common properties of mesh>scale, general>biastype and joint>axis-->
       <body name="base" pos="0 0 0.0038" quat="1 0 0 -1">
         <inertial mass="0.777441" pos="0 -2.70394e-05 0.0354675" quat="1 -0.00152849 0 0"
           diaginertia="0.000260285 0.000225381 0.000152708"/>
         <geom class="visual" mesh="base" material="black"/>
         <geom class="collision" mesh="base"/>
         <site name="pinch" pos="0 0 0.145" type="sphere" group="5" rgba="0.9 0.9 0.9 1" size="0.005"/>
+        <!-- ^second body is the gripper base (hub), in class "visual" and "collision" -->
         <!-- Right-hand side 4-bar linkage -->
         <body name="right_driver" pos="0 0.0306011 0.054904">
           <inertial mass="0.00899563" pos="2.96931e-12 0.0177547 0.00107314" quat="0.681301 0.732003 0 0"
@@ -124,12 +137,14 @@ impedance d∈(0,1);  stiffness k and damping b
           <joint name="right_driver_joint" class="driver"/>
           <geom class="visual" mesh="driver" material="gray"/>
           <geom class="collision" mesh="driver"/>
+          <!-- ^third body is the right crank, in class "visual", "collision" and "driver"-->
           <body name="right_coupler" pos="0 0.0315 -0.0041">
             <inertial mass="0.0140974" pos="0 0.00301209 0.0232175" quat="0.705636 -0.0455904 0.0455904 0.705636"
               diaginertia="4.16206e-06 3.52216e-06 8.88131e-07"/>
             <joint name="right_coupler_joint" class="coupler"/>
             <geom class="visual" mesh="coupler" material="black"/>
             <geom class="collision" mesh="coupler"/>
+            <!-- ^fourth body is the right coupler (L2), in class "visual", "collision" and "coupler"-->
           </body>
         </body>
         <body name="right_spring_link" pos="0 0.0132 0.0609">
@@ -138,20 +153,24 @@ impedance d∈(0,1);  stiffness k and damping b
           <joint name="right_spring_link_joint" class="spring_link"/>
           <geom class="visual" mesh="spring_link" material="black"/>
           <geom class="collision" mesh="spring_link"/>
+          <!-- ^fifth body is the right spring link (L4), in class "visual", "collision" and "spring_link"-->
           <body name="right_follower" pos="0 0.055 0.0375">
             <inertial mass="0.0125222" pos="0 -0.011046 0.0124786" quat="1 0.1664 0 0"
               diaginertia="2.67415e-06 2.4559e-06 6.02031e-07"/>
             <joint name="right_follower_joint" class="follower"/>
             <geom class="visual" mesh="follower" material="black"/>
             <geom class="collision" mesh="follower"/>
+            <!-- ^sixth body is the right follower (L3), in class "visual", "collision" and "follower"-->
             <body name="right_pad" pos="0 -0.0189 0.01352">
               <geom class="pad_box1" name="right_pad1"/>
               <geom class="pad_box2" name="right_pad2"/>
               <inertial mass="0.0035" pos="0 -0.0025 0.0185" quat="0.707107 0 0 0.707107"
                 diaginertia="4.73958e-07 3.64583e-07 1.23958e-07"/>
               <geom class="visual" mesh="pad"/>
+              <!-- ^7th body is the right pad (tip-actual), in class "visual", "pad_box1" "pad_box2"-->
               <body name="right_silicone_pad">
                 <geom class="visual" mesh="silicone_pad" material="black"/>
+                <!-- ^8th body is the right silicone pad (tip-cosmatic), in class "visual"-->
               </body>
             </body>
           </body>
@@ -207,28 +226,59 @@ impedance d∈(0,1);  stiffness k and damping b
     <exclude body1="right_coupler" body2="right_follower"/>
     <exclude body1="left_coupler" body2="left_follower"/>
   </contact>
+  <!-- ^contact/⁠exclude (*)
+  This element is used to exclude a pair of bodies from collision checking. Unlike all other contact-related elements which refer to geoms, this element refers to bodies. 
+  Experience has shown that exclusion is more useful on the level of bodies. Collisions between any geom defined in the first body and any geom defined in the second body are excluded. -->
 
-  <!--
-    This adds stability to the model by having a tendon that distributes the forces between both
-    joints, such that the equality constraint doesn't have to do that much work in order to equalize
-    both joints. Since both joints share the same sign, we split the force between both equally by
-    setting coef=0.5
-  -->
   <tendon>
     <fixed name="split">
       <joint joint="right_driver_joint" coef="0.5"/>
       <joint joint="left_driver_joint" coef="0.5"/>
     </fixed>
   </tendon>
+  <!-- ^
+    This adds stability to the model by having a tendon that distributes the forces between both
+    joints, such that the equality constraint doesn't have to do that much work in order to equalize
+    both joints. Since both joints share the same sign, we split the force between both equally by
+    setting coef=0.5
+  -->
+
+  <!-- tendon/⁠fixed (*)
+    This element creates an abstract tendon whose length is defined as a linear combination of joint positions. 
+    Recall that the tendon length and its gradient are the only quantities needed for simulation. Thus we could define any scalar function of joint positions, 
+    call it “tendon”, and plug it in MuJoCo. Presently the only such function is a fixed linear combination. 
+    The attributes of fixed tendons are a subset of the attributes of spatial tendons and have the same meaning as above.
+
+    fixed/⁠joint (*)
+    This element adds a joint to the computation of the fixed tendon length. The position or angle of each included joint is multiplied by the corresponding coef value, 
+    and added up to obtain the tendon length.
+
+    Tendons can be used to impose length limits, simulate spring, damping and dry friction forces, as well as attach actuators to them. 
+    When used in equality constraints, tendons can also represent different forms of mechanical coupling.
+  -->
 
   <equality>
     <connect anchor="0 0 0" body1="right_follower" body2="right_coupler" solimp="0.95 0.99 0.001" solref="0.005 1"/>
     <connect anchor="0 0 0" body1="left_follower" body2="left_coupler" solimp="0.95 0.99 0.001" solref="0.005 1"/>
-    <joint joint1="right_driver_joint" joint2="left_driver_joint" polycoef="0 1 0 0 0" solimp="0.95 0.99 0.001"
-      solref="0.005 1"/>
+    <joint joint1="right_driver_joint" joint2="left_driver_joint" polycoef="0 1 0 0 0" solimp="0.95 0.99 0.001" solref="0.005 1"/>
   </equality>
+  <!--equality/⁠connect (*) ^
+    This element creates an equality constraint that connects two bodies at a point. The constraint effectively defines a ball joint outside the kinematic tree.
 
-  <!--
+    anchor: real(3), optional
+    Coordinates of the 3D anchor point where the two bodies are connected, in the local coordinate frame of body1. 
+    The constraint is assumed to be satisfied in the configuration in which the model is defined, which lets the compiler compute the associated anchor point for body2.   
+
+    solref, solimp
+    Constraint solver parameters for equality constraint simulation.
+
+    equality/⁠joint (*)
+    This element constrains the position or angle of one joint to be a quartic polynomial of another joint. Only scalar joint types (slide and hinge) can be used.
+    polycoef="0 1 0 0 0" means y-y0 = x-x0 
+    (joint values of joint1 and joint2 are respectively y and x, and their reference positions (corresponding to the joint values in the initial model configuration) are y0 and x0)
+   -->
+
+  <!--↓
     The general actuator below is a customized position actuator (with some damping) where
     gainprm[0] != kp (see http://mujoco.org/book/modeling.html#position).
     The reason why gainprm[0] != kp is because the control input range has to be re-scaled to
@@ -240,4 +290,29 @@ impedance d∈(0,1);  stiffness k and damping b
     <general class="2f85" name="fingers_actuator" tendon="split" forcerange="-5 5" ctrlrange="0 255"
       gainprm="0.3137255 0 0" biasprm="0 -100 -10"/>
   </actuator>
+  
+  <!-- 
+    forcerange: real(2), “0 0”: 
+    Range for clamping the force output. The first value must be no greater than the second value.
+    Setting this attribute without specifying forcelimited is an error if autolimits is “false” in compiler.
+
+    ctrlrange: real(2), “0 0”:
+    Range for clamping the control input. The first value must be smaller than the second value.
+    Setting this attribute without specifying ctrllimited is an error if autolimits is “false” in compiler.
+
+    tendon: string, optional:
+    If specified, the actuator acts on the given tendon. 
+    The actuator length equals the tendon length times the gear ratio. Both spatial and fixed tendons can be used. gear ratio default is “1 0 0 0 0 0”
+
+    gainprm: real(10), “1 0 … 0”:
+    Gain parameters. The built-in gain types (except for muscle) use only the first parameter,but we provide additional parameters in case user callbacks implement a more elaborate model. 
+    The length of this array is not enforced by the parser, so the user can enter as many parameters as needed. These defaults are not compatible with muscle actuators; 
+
+    biasprm: real(10), “0 … 0”:
+    Bias parameters. The affine bias type uses three parameters. The length of this array is not enforced by the parser, 
+    so the user can enter as many parameters as needed. These defaults are not compatible with muscle actuators;
+    note that: "affine" means bias_term = biasprm[0] + biasprm[1]*length + biasprm[2]*velocity (affine - 仿射的)
+
+    actuator types: general, motor, position, velocity, inevelocity, damper, clylinder, muscle, adhesion, plugin (engine)
+   -->
 </mujoco>
