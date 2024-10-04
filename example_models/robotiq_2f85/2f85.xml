@@ -123,7 +123,11 @@ it is not recommended to use high impratio values with pyramidal cones. -->
       <geom class="visual" mesh="base_mount" material="black"/>
       <geom class="collision" mesh="base_mount"/>
       <!-- ^first body, the base_mount, in the class "2f85" with common properties of mesh>scale, general>biastype and joint>axis-->
-      <body name="base" pos="0 0 0.0038" quat="1 0 0 -1">
+      <body name="base" pos="0 0 0.0038" quat="1 0 0 0">
+      <!-- Recall that a 3D rotation by angle a a around axis given by the unit vector (x,y,z) corresponds to the quaternion (cos(a/2),sin(a/2)⋅(x,y,z)) -->
+      <!-- here cos(a/2)==1 means a/2 0 or 360, a is 0; then, sin(a/2)=0, then the quaternion has to be (1,0,0,0), why is (1,0,0,-1)??? 
+          The quaternion q = (1, 0, 0, 0) is the identity quaternion. It represents no rotation.
+          Similarly, (0, 0, 0, 1) means a/2 is 90/270, a is 180, sin(a/2)==1, then it represents rotate along Z axis for 180?  -->
         <inertial mass="0.777441" pos="0 -2.70394e-05 0.0354675" quat="1 -0.00152849 0 0"
           diaginertia="0.000260285 0.000225381 0.000152708"/>
         <geom class="visual" mesh="base" material="black"/>

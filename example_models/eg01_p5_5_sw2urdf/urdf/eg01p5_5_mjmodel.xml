@@ -28,7 +28,8 @@
     <default class="eg01">
       <mesh scale="0.001 0.001 0.001"/>
       <general biastype="affine"/>
-      <joint axis="1 0 0"/>
+      <!-- <joint axis="1 0 0"/> 
+        not necessary here since joint axis are defined for each joint later-->
 
       <!--example:  <default class="driver">
         <joint range="0 0.8" armature="0.005" damping="0.1" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
@@ -44,18 +45,17 @@
       </default> -->
 
       <default class="L1_J1">
-        <joint range="-0.1 2.32" armature="0.005" damping="0.1" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+        <joint range="-0.1 2.32" armature="0.005" damping="0.01" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
       </default>
       <default class="L2_J2">
-        <joint range="-1.8 0.000" armature="0.001" damping="0.1" stiffness="0.5" springref="0.2" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+        <joint range="-1.8 0.0" armature="0.001" damping="0.01" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1" stiffness="0.5" springref="0.2"/>
       </default>
       <default class="L3_J3">
-        <joint range="-1.5 0.75" armature="0.001"  solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+        <joint range="-1.5 0.75" armature="0.001" damping="0.1" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
       </default>
-      <default class="L4_J5">
-        <joint range="0.0 1.4" armature="0.001" damping="0.00125" stiffness="20" springref="0.7"  solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+      <default class="L4_J4">
+        <joint range="-0.1 1.4" armature="0.001" damping="0.1" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1" stiffness="20" springref="0.7"/>
       </default>
-
 
       <default class="visual">
         <geom type="mesh" contype="0" conaffinity="0" group="2"/>
@@ -128,10 +128,10 @@
 
             <body name="Left_finger_plate">  
               <geom pos="0.000145846 0 0.0247601" quat="0.281788 -0.648533 -0.648533 0.281788" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.25098 0.25098 0.25098 1" mesh="Left_finger_plate"/>
-              <geom pos="0.000145846 0 0.0247601" quat="0.281788 -0.648533 -0.648533 0.281788" type="mesh" rgba="0.25098 0.25098 0.25098 0.5" class="collision" mesh="Left_finger_plate"/>
+              <geom pos="0.000145846 0 0.0247601" quat="0.281788 -0.648533 -0.648533 0.281788" type="mesh" rgba="0.25098 0.25098 0.25098 0.5" class="collision" mesh="Left_finger_plate" friction="1.0"/>
                 <body name="Left_finger_rubber">
                   <geom pos="0.000145846 0 0.0247601" quat="0.281788 -0.648533 -0.648533 0.281788" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.752941 0.752941 0.752941 1" mesh="Left_finger_rubber"/>
-                  <geom pos="0.000145846 0 0.0247601" quat="0.281788 -0.648533 -0.648533 0.281788" type="mesh" rgba="0.752941 0.752941 0.752941 1" class="collision" mesh="Left_finger_rubber"/>
+                  <geom pos="0.000145846 0 0.0247601" quat="0.281788 -0.648533 -0.648533 0.281788" type="mesh" rgba="0.752941 0.752941 0.752941 1" class="collision" mesh="Left_finger_rubber" friction="1.0"/>
                 </body>
             </body>
           </body>
@@ -146,7 +146,7 @@
       </body> -->
       <body name="Left_L4" pos="-0.01 0 0.1107" quat="0.999762 0 -0.0218149 0">
         <inertial pos="-0.000775167 1.18348e-09 0.0401951" quat="1 0 -0.000433959 0" mass="0.0414352" diaginertia="2.23144e-05 1.394e-05 9.29223e-06"/>
-        <joint name="Left_J4" pos="0 0 0" axis="0 -1 0" class="L4_J5"/>
+        <joint name="Left_J4" pos="0 0 0" axis="0 -1 0" class="L4_J4"/>
         <geom class="visual" mesh="Left_L4" material="black"/>
         <geom class="collision" mesh="Left_L4"/>
       </body>
@@ -186,10 +186,10 @@
 
             <body name="Right_finger_plate">  
               <geom pos="0.000145846 0 0.0247601" quat="0.648533 0.28179 0.28179 0.648533" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.25098 0.25098 0.25098 1" mesh="Right_finger_plate"/>
-              <geom pos="0.000145846 0 0.0247601" quat="0.648533 0.28179 0.28179 0.648533" type="mesh" rgba="0.25098 0.25098 0.25098 1" class="collision" mesh="Right_finger_plate"/>
+              <geom pos="0.000145846 0 0.0247601" quat="0.648533 0.28179 0.28179 0.648533" type="mesh" rgba="0.25098 0.25098 0.25098 1" class="collision" mesh="Right_finger_plate" friction="1.0"/>
                 <body name="Right_finger_rubber">
                   <geom pos="0.0111108 0 0.0349958" quat="0.648533 -0.28179 0.28179 -0.648533" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.752941 0.752941 0.752941 1" mesh="Right_finger_rubber"/>
-                  <geom pos="0.0111108 0 0.0349958" quat="0.648533 -0.28179 0.28179 -0.648533" type="mesh" rgba="0.752941 0.752941 0.752941 1" class="collision" mesh="Right_finger_rubber"/>
+                  <geom pos="0.0111108 0 0.0349958" quat="0.648533 -0.28179 0.28179 -0.648533" type="mesh" rgba="0.752941 0.752941 0.752941 1" class="collision" mesh="Right_finger_rubber" friction="1.0"/>
                 </body>
             </body>
           </body>
@@ -203,7 +203,7 @@
       </body> -->
       <body name="Right_L4" pos="0.01 0 0.1107" quat="0 -0.0218149 0 -0.999762">
         <inertial pos="-0.000775167 1.18348e-09 0.0401951" quat="1 0 -0.000433959 0" mass="0.0414352" diaginertia="2.23144e-05 1.394e-05 9.29223e-06"/>
-        <joint name="Right_J4" pos="0 0 0" axis="0 -1 0" class="L4_J5"/>
+        <joint name="Right_J4" pos="0 0 0" axis="0 -1 0" class="L4_J4"/>
         <geom class="visual" mesh="Right_L4" material="black"/>
         <geom class="collision" mesh="Right_L4"/>
       </body>
@@ -239,7 +239,7 @@
   </contact>
 
   <tendon>
-    <fixed name="split">
+    <fixed name="LnR_J1_split">
       <joint joint="Left_J1" coef="0.5"/>
       <joint joint="Right_J1" coef="0.5"/>
     </fixed>
@@ -249,13 +249,20 @@
     <connect anchor="0 0 0.068" body1="Left_L4" body2="Left_L3" solimp="0.95 0.99 0.001" solref="0.005 1"/>
     <connect anchor="0 0 0.068" body1="Right_L4" body2="Right_L3" solimp="0.95 0.99 0.001" solref="0.005 1"/>
   </equality>
+  <!-- use equility to connect L4 and L3 bodies to form a close chain, anchor point is (0,0,0.068) on body1
+       which is the upper shaft center of L4 (L4 length is 68mm)-->
 
   <actuator>
-    <general class="eg01" name="L1_actuator" tendon="split" forcerange="-50 50" ctrlrange="-100 900"
-      gainprm="0.3137255 0 0" biasprm="0 -100 -10"/>
+    <general class="eg01" name="L1J1_actuator" tendon="LnR_J1_split" forcerange="-50 50" ctrlrange="-40 40"
+      gainprm="0.8 0 0" biasprm="0 0 -10"/>
   </actuator>
-
-  <!-- <actuator>
-    <position name="L1_actuator" tendon="split" forcerange="-5 5" ctrlrange="-1.483 0"/>
-  </actuator> -->
+  <!-- ^
+      affine gain_term = gainprm[0] + gainprm[1]*length + gainprm[2]*velocity 
+      affine bias_term = biasprm[0] + biasprm[1]*length + biasprm[2]*velocity
+      I guess control_output = gain_term*control_input + bias_term = 0.314*Len + (0 -100*Len-10*Vel)
+      I tried change -10 to other numbers, they made the motion jerky. 
+      I tried change the -100 to 0, it led to a relaxing initial effort, the finger opened by the object opon resetting.
+      I tried chagne the 0.314 to 0, and it showed no movement.           
+      Finnally change to force = 0.8*Len + (0 -0*Len-10*Vel)
+      -->
 </mujoco>

@@ -24,18 +24,18 @@
     <light pos="0 -0.2 1" dir="0 0.2 -0.8" directional="true"/>
     <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
     
-    <site size="0.002" pos="0 0.01 0.23" name="anchor1"/>    
+    <!-- <site size="0.002" pos="0 0.01 0.23" name="anchor1"/>    
     <site size="0.002" pos="0 -0.01 0.23" name="anchor2"/> 
     <body name="object" pos="0 0 0.15">
       <freejoint/>
-      <geom type="box" size="0.015 0.015 0.015" rgba=".5 .7 .5 1" friction=".5" priority="1"/>
+      <geom type="box" size="0.015 0.015 0.015" rgba=".5 .7 .5 1" friction="1.0" priority="1"/>
       <site size="0.002" pos="0.00 0.01 0.015" name="hook1"/>
       <site size="0.002" pos="0.00 -0.01 0.015" name="hook2"/>
-    </body>
+    </body> -->
    
   </worldbody>
   
-  <tendon>
+  <!-- <tendon>
     <spatial limited="true" range="0 0.02" width="0.001">
       <site site="hook1"/>
       <site site="anchor1"/>
@@ -46,5 +46,6 @@
       <site site="hook2"/>
       <site site="anchor2"/>
     </spatial>
-  </tendon>
+  </tendon> -->
+
 </mujoco>
