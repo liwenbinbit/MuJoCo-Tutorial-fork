@@ -1,0 +1,45 @@
+
+<!-- https://github.com/google-deepmind/mujoco/issues/1235 -->
+<mujoco model="Plate">
+  <include file="scene.xml"/>
+
+  <extension>
+    <plugin plugin="mujoco.elasticity.shell"/>
+    <plugin plugin="mujoco.elasticity.solid"/>
+  </extension>
+
+  <option solver="CG" tolerance="1e-6"/>
+
+  <size memory="10M"/>
+
+  <visual>
+    <map stiffness="100"/>
+  </visual>
+
+  <default>
+    <default class="wall">
+      <geom type="plane" size=".5 .5 .05"/>
+    </default>
+  </default>
+
+  <worldbody>
+
+    <body name="box" pos=".1 0 1.5">
+      <joint name="box" type="slide" axis="0 1 0" damping="0.5"/>
+      <geom type="box" size=".05 .05 .05"/>
+      <flexcomp name="softbody" type="grid" count="8 4 20" spacing=".01 .01 .01" pos="0. 0. -0.15"
+              radius=".0" rgba="0 .7 .7 1"  dim="3" mass="2">
+        <contact condim="3" solref="0.01 1" solimp=".95 .99 .0001" selfcollide="none"/>
+        <edge equality="true" damping="10"/>
+        <pin id="19 39 59 79 579 599 619 639"/>
+        <plugin plugin="mujoco.elasticity.solid">
+          <config key="poisson" value="0.0"/>
+          <!--Units are in Pa (SI)-->
+          <config key="young" value="5e3"/>
+          <config key="damping" value="0.002"/>
+      </plugin>
+      </flexcomp>
+    </body>
+
+  </worldbody>
+</mujoco>
