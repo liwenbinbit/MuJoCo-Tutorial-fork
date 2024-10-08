@@ -35,7 +35,7 @@
         <plugin plugin="mujoco.elasticity.solid">
           <config key="poisson" value="0.0"/>
           <!--Units are in Pa (SI)-->
-          <config key="young" value="5e3"/>
+          <config key="young" value="5e4"/>
           <config key="damping" value="0.002"/>
       </plugin>
       </flexcomp>

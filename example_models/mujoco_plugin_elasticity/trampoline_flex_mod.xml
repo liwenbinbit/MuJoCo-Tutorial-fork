@@ -31,13 +31,13 @@
     </body>
     <body name="rigid_anchor">
       <geom name="ramp" type="box" size="0.8 0.8 .03" pos="0 0 0.5" euler="0 0 0" rgba="1 1 1 1"/>
-        <flexcomp type="grid" count="16 16 2" spacing=".1 .1 .005" pos="0 0 1"
+        <flexcomp type="grid" count="16 16 2" spacing=".05 .05 .003" pos="0 0 1"
                   radius=".001" mass="10" name="plate" dim="3">
           <contact condim="3" solref="0.01 1" solimp=".95 .99 .0001"/>
           <edge equality="true" damping="10"/>
           <!-- <pin id="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"/> -->
-          <plugin plugin="mujoco.elasticity.solid">
-            <config key="poisson" value="0.1"/>
+          <plugin plugin="mujoco.elasticity.shell">
+            <config key="poisson" value="0.0"/>
             <!-- <config key="thickness" value="1e-2"/> -->
             <!--Units are in Pa (SI)-->
             <config key="young" value="3e5"/>
