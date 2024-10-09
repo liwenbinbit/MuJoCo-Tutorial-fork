@@ -39,9 +39,9 @@
         <edge equality="true" damping="0.001"/>
         <plugin plugin="mujoco.elasticity.shell">
           <config key="poisson" value="0"/>
-          <config key="thickness" value="1e-2"/>
+          <config key="thickness" value="1e-3"/>
           <!--Units are in Pa (SI)-->
-          <config key="young" value="3e6"/>
+          <config key="young" value="3e8"/>
         </plugin>
       </flexcomp>
     </body>
