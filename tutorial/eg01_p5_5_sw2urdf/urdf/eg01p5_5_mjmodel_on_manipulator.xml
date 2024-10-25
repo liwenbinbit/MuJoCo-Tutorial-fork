@@ -79,18 +79,18 @@
     <geom name="floor_mount" type="cylinder" fromto="0 0 0 0 0 0.02" size=".1"/>
     <body name="link_001" pos="0 0 0.6">
       <geom name="link_001_zpost" type="box" size="0.025 0.025 0.6" rgba="1 0 0 1"/>
-      <body name="link_002" pos="0 0 0.5">
-        <joint name="slide_joint" type="slide" range="-0.8 0" axis="0 0 1" pos="0 0 0" damping="300.0"/>
-        <geom name="link_001_ypost" type="capsule" fromto="0 0 0 0 0.4 0" size="0.025" rgba="0 0 1 1"/>
+      <body name="link_002" pos="0 0 0">
+        <joint name="slide_joint" type="slide" range="-0.3 0.3" axis="0 0 1" pos="0 0 0" damping="300.0"/>
+        <geom name="link_002_ypost" type="capsule" fromto="0 0 0 0 0.4 0" size="0.025" rgba="0 1 0 1"/>
         <body name="link_003" pos="0 0.4 0">
-          <joint name="ball_joint" type="ball" pos="0 0 0" damping="0.2"/>
-          <geom name="ball" type="sphere" size="0.05" rgba="0 1 0 1"/>
-          <geom name="flange_mount" type="cylinder" fromto="0 0 0 0 0 0.06" size="0.04"/>
-          <geom name="x_marker" type="cylinder" fromto="0 0 0 0.1 0 0" size="0.01" rgba="1 0 0 0.5"/>
-          <geom name="y_marker" type="cylinder" fromto="0 0 0 0 0.1 0" size="0.01" rgba="0 1 0 0.5"/>
-          <geom name="z_marker" type="cylinder" fromto="0 0 0 0 0 -0.1" size="0.01" rgba="0 0 1 0.5" />
+          <joint name="ball_joint" type="ball" pos="0 0 0" damping="5"/>
+          <geom name="ball" type="sphere" size="0.05" rgba="0 0 1 1"/>
+          <geom name="flange_mount" type="cylinder" fromto="0 0 0 0 0 0.05" size="0.04"/>
+          <geom name="x_marker" type="cylinder" fromto="0 0 0 0.1 0 0" size="0.005" rgba="1 0 0 0.5"/>
+          <geom name="y_marker" type="cylinder" fromto="0 0 0 0 0.1 0" size="0.005" rgba="0 1 0 0.5"/>
+          <geom name="z_marker" type="cylinder" fromto="0 0 0 0 0 -0.1" size="0.005" rgba="0 0 1 0.5" />
 
-          <body name="base_link" pos="0 0 0.06" childclass="eg01">
+          <body name="base_link" pos="0 0 0.05" childclass="eg01">
             <!--example: <geom class="visual" mesh="base_mount" material="black"/>
             <geom class="collision" mesh="base_mount"/> -->
             <!--autogen: <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.25098 0.25098 0.25098 1" mesh="base_link"/>
@@ -276,6 +276,24 @@
   <actuator>
     <general class="eg01" name="L1J1_actuator" tendon="LnR_J1_split" forcerange="-50 50" ctrlrange="-40 40"
       gainprm="0.8 0 0" biasprm="0 0 -10"/>
+  </actuator>
+  <actuator>
+    <velocity joint="slide_joint" kv="1" name="vel_actuator"/>
+  </actuator>
+  <actuator>
+    <!-- Three motors for control around each axis -->
+    <motor joint="ball_joint" gear="1 0 0" name="motor_x"/>
+    <motor joint="ball_joint" gear="0 1 0" name="motor_y"/>
+    <motor joint="ball_joint" gear="0 0 1" name="motor_z"/>
+  </actuator>
+  <actuator>
+    <!-- Position servos for orientation control -->
+    <position joint="ball_joint" kp="10" gear="1 0 0" name="pos_x"/>
+    <position joint="ball_joint" kp="10" gear="-1 0 0" name="pos_x_"/>
+    <position joint="ball_joint" kp="10" gear="0 1 0" name="pos_y"/>
+    <position joint="ball_joint" kp="10" gear="0 -1 0" name="pos_y_"/>
+    <position joint="ball_joint" kp="10" gear="0 0 1" name="pos_z"/>
+    <position joint="ball_joint" kp="10" gear="0 0 -1" name="pos_z_"/>
   </actuator>
   <!-- ^
       affine gain_term = gainprm[0] + gainprm[1]*length + gainprm[2]*velocity 
