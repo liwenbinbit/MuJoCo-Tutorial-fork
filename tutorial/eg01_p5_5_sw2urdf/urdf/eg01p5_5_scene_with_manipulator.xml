@@ -24,6 +24,8 @@
     <light pos="0 0 1"/>
     <light pos="0 -0.2 1" dir="0 0.2 -0.8" directional="true"/>
     <camera name="fixed" pos="0 -0.8 0.5" xyaxes="1 0 0 0 1 2"/>
+    <camera name="fixed_2" pos="2.5 0 0.75" xyaxes="0 1 0 0 1 2"/>
+    <!-- <camera name="fixed_2" pos="2.5 0 0.75" euler="0 45 0"/> -->
     <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
 
     <!-- <geom name="floor_mount" type="cylinder" fromto="0 0 0 0 0 0.02" size=".1"/>
