@@ -1,0 +1,289 @@
+<mujoco model="eg01_p5_5_sw2urdf">
+  <compiler angle="radian" meshdir="..\meshes" autolimits="true"/>
+
+  <option cone="elliptic" impratio="10"/>
+
+  <asset>
+    <material name="metal" rgba="0.58 0.58 0.58 1"/>
+    <material name="silicone" rgba="0.1882 0.1882 0.1882 1"/>
+    <material name="gray" rgba="0.4627 0.4627 0.4627 1"/>
+    <material name="black" rgba="0.149 0.149 0.149 1"/>
+    
+    <mesh name="base_link" file="base_link.STL"/>
+    <mesh name="Left_L1" file="Left_L1.STL"/>
+    <mesh name="Left_L2" file="Left_L2.STL"/>
+    <mesh name="Left_L3" file="Left_L3.STL"/>
+    <mesh name="Left_finger_plate" file="Left_finger_plate.STL"/>
+    <mesh name="Left_finger_rubber" file="Left_finger_rubber.STL"/>
+    <mesh name="Left_L4" file="Left_L4.STL"/>
+    <mesh name="Right_L1" file="Right_L1.STL"/>
+    <mesh name="Right_L2" file="Right_L2.STL"/>
+    <mesh name="Right_L3" file="Right_L3.STL"/>
+    <mesh name="Right_finger_plate" file="Right_finger_plate.STL"/>
+    <mesh name="Right_finger_rubber" file="Right_finger_rubber.STL"/>
+    <mesh name="Right_L4" file="Right_L4.STL"/>
+  </asset>
+
+  <default>
+    <default class="eg01">
+      <mesh scale="0.001 0.001 0.001"/>
+      <general biastype="affine"/>
+      <!-- <joint axis="1 0 0"/> 
+        not necessary here since joint axis are defined for each joint later-->
+
+      <!--example:  <default class="driver">
+        <joint range="0 0.8" armature="0.005" damping="0.1" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+      </default>
+      <default class="follower">
+        <joint range="-0.872664 0.872664" armature="0.001" pos="0 -0.018 0.0065" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+      </default>
+      <default class="spring_link">
+        <joint range="-0.29670597283 0.8" armature="0.001" stiffness="0.05" springref="2.62" damping="0.00125"/>
+      </default>
+      <default class="coupler">
+        <joint range="-1.57 0" armature="0.001" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+      </default> -->
+
+      <default class="J1_L1">
+        <joint range="-0.1 2.32" armature="0.005" damping="0.01" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+      </default>
+      <default class="J2_L2">
+        <joint range="-1.8 0.0" armature="0.001" damping="0.01" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1" stiffness="0.5" springref="0.2"/>
+      </default>
+      <default class="J3_L3">
+        <joint range="-1.5 0.75" armature="0.001" damping="0.1" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+      </default>
+      <default class="J4_L4">
+        <joint range="-0.1 1.4" armature="0.001" damping="0.1" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1" stiffness="20" springref="0.7"/>
+      </default>
+
+      <default class="visual">
+        <geom type="mesh" contype="0" conaffinity="0" group="2"/>
+      </default>
+
+      <default class="collision">
+        <geom type="mesh" group="3"/>
+        <!-- <default class="pad_box1">
+          <geom mass="0" type="box" pos="0 -0.0026 0.028125" size="0.011 0.004 0.009375" friction="0.7"
+            solimp="0.95 0.99 0.001" solref="0.004 1" priority="1" rgba="0.55 0.55 0.55 1"/>
+        </default>
+        <default class="pad_box2">
+          <geom mass="0" type="box" pos="0 -0.0026 0.009375" size="0.011 0.004 0.009375" friction="0.6"
+            solimp="0.95 0.99 0.001" solref="0.004 1" priority="1" rgba="0.45 0.45 0.45 1"/>
+        </default> -->
+      </default>
+    </default>
+  </default>  
+
+  <worldbody>
+    <geom name="floor_mount" type="cylinder" fromto="0 0 0 0 0 0.02" size=".1"/>
+    <body name="link_001" pos="0 0 0.6">
+      <geom name="link_001_zpost" type="box" size="0.025 0.025 0.6" rgba="1 0 0 1"/>
+      <body name="link_002" pos="0 0 0.5">
+        <joint name="slide_joint" type="slide" range="-0.8 0" axis="0 0 1" pos="0 0 0" damping="200.0"/>
+        <geom name="link_001_ypost" type="capsule" fromto="0 0 0 0 0.4 0" size="0.025" rgba="0 0 1 1"/>
+        <body name="link_003" pos="0 0.4 0">
+          <joint name="ball_joint" type="ball" pos="0 0 0" damping="0.2"/>
+          <geom name="ball" type="sphere" size="0.05" rgba="0 1 0 1"/>
+          <geom name="flange_mount" type="cylinder" fromto="0 0 0 0 0 0.06" size="0.04"/>
+          <geom name="x_marker" type="cylinder" fromto="0 0 0 0.1 0 0" size="0.01" rgba="1 0 0 0.5"/>
+          <geom name="y_marker" type="cylinder" fromto="0 0 0 0 0.1 0" size="0.01" rgba="0 1 0 0.5"/>
+          <geom name="z_marker" type="cylinder" fromto="0 0 0 0 0 -0.1" size="0.01" rgba="0 0 1 0.5" />
+
+          <body name="base_link" pos="0 0 0.06" childclass="eg01">
+            <!--example: <geom class="visual" mesh="base_mount" material="black"/>
+            <geom class="collision" mesh="base_mount"/> -->
+            <!--autogen: <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.25098 0.25098 0.25098 1" mesh="base_link"/>
+            <geom type="mesh" rgba="0.25098 0.25098 0.25098 1" class="collision" mesh="base_link"/> -->
+            <geom class="visual" mesh="base_link" material="black"/>
+            <geom class="collision" mesh="base_link"/> 
+            
+            <!--example: <body name="right_driver" pos="0 0.0306011 0.054904">
+              <inertial mass="0.00899563" pos="2.96931e-12 0.0177547 0.00107314" quat="0.681301 0.732003 0 0"
+                diaginertia="1.72352e-06 1.60906e-06 3.22006e-07"/>
+              <joint name="right_driver_joint" class="driver"/>
+              <geom class="visual" mesh="driver" material="gray"/>
+              <geom class="collision" mesh="driver"/> -->
+            <!--autogen <body name="Left_L1" pos="-0.024 0 0.0957" quat="0.999762 0 -0.0218326 0">
+              <inertial pos="1.43904e-07 -3.34855e-09 0.0211388" quat="0.707107 0.707107 0.000433452 -0.000433452" mass="0.020296" diaginertia="6.30267e-06 3.87088e-06 2.92634e-06"/>
+              <joint name="Left_J1" pos="0 0 0" axis="0 1 0" range="-1.571 1.571" actuatorfrcrange="-50 50" damping="0.1"/>
+              <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.25098 0.25098 0.25098 1" class="collision" mesh="Left_L1"/>
+              <geom type="mesh" rgba="0.25098 0.25098 0.25098 1" mesh="Left_L1"/> -->
+
+            <body name="Left_L1" pos="-0.024 0 0.0957" quat="0.999762 0 -0.0218326 0">
+              <inertial pos="1.43904e-07 -3.34855e-09 0.0211388" quat="0.707107 0.707107 0.000433452 -0.000433452" mass="0.020296" diaginertia="6.30267e-06 3.87088e-06 2.92634e-06"/>
+              <joint name="Left_J1" pos="0 0 0" axis="0 -1 0" class="J1_L1"/>
+              <geom class="visual" mesh="Left_L1" material="black"/>
+              <geom class="collision" mesh="Left_L1"/>
+
+              <!--autogen: <body name="Left_L2" pos="0 0 0.034">
+                <inertial pos="-0.000647192 -2.92504e-09 0.0156751" quat="0.706829 0.706825 0.0198903 -0.0198901" mass="0.0233775" diaginertia="4.19732e-06 2.50182e-06 2.33741e-06"/>
+                <joint name="Left_J2" pos="0 0 0" axis="0 -1 0" range="-1.571 0.000" actuatorfrcrange="-50 50" damping="0.1" stiffness="0.05" springref="20.62" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+                <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.25098 0.25098 0.25098 1" class="collision" mesh="Left_L2"/>
+                <geom type="mesh" rgba="0.25098 0.25098 0.25098 1" mesh="Left_L2"/>         -->
+
+              <body name="Left_L2" pos="0 0 0.034">
+                <inertial pos="-0.000647192 -2.92504e-09 0.0156751" quat="0.706829 0.706825 0.0198903 -0.0198901" mass="0.0233775" diaginertia="4.19732e-06 2.50182e-06 2.33741e-06"/>
+                <joint name="Left_J2" pos="0 0 0" axis="0 -1 0" class="J2_L2"/>
+                <geom class="visual" mesh="Left_L2" material="black"/>
+                <geom class="collision" mesh="Left_L2"/>
+
+                <!--autogen <body name="Left_L3" pos="0 0 0.034" quat="0.922094 0 0.386967 0">
+                  <inertial pos="-0.0044967 -6.88183e-11 0.025979" quat="0.986589 0 -0.163225 0" mass="0.0444524" diaginertia="1.51863e-05 1.40838e-05 3.48548e-06"/>
+                  <joint name="Left_J3" pos="0 0 0" axis="0 -1 0" range="-1.571 0.000" actuatorfrcrange="-50 50" damping="0.1" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+                  <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.25098 0.25098 0.25098 1" class="collision" mesh="Left_L3"/>
+                  <geom type="mesh" rgba="0.25098 0.25098 0.25098 1" mesh="Left_L3"/> -->
+
+                <body name="Left_L3" pos="0 0 0.034" quat="0.922094 0 0.386967 0">
+                  <inertial pos="-0.0044967 -6.88183e-11 0.025979" quat="0.986589 0 -0.163225 0" mass="0.0444524" diaginertia="1.51863e-05 1.40838e-05 3.48548e-06"/>
+                  <joint name="Left_J3" pos="0 0 0" axis="0 -1 0" class="J3_L3"/>
+                  <geom class="visual" mesh="Left_L3" material="black"/>
+                  <geom class="collision" mesh="Left_L3"/>
+
+                  <body name="Left_finger_plate">  
+                    <geom pos="0.000145846 0 0.0247601" quat="0.281788 -0.648533 -0.648533 0.281788" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.25098 0.25098 0.25098 1" mesh="Left_finger_plate"/>
+                    <geom pos="0.000145846 0 0.0247601" quat="0.281788 -0.648533 -0.648533 0.281788" type="mesh" rgba="0.25098 0.25098 0.25098 0.5" class="collision" mesh="Left_finger_plate" friction="1.0"/>
+                      <body name="Left_finger_rubber">
+                        <geom pos="0.000145846 0 0.0247601" quat="0.281788 -0.648533 -0.648533 0.281788" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.752941 0.752941 0.752941 1" mesh="Left_finger_rubber"/>
+                        <geom pos="0.000145846 0 0.0247601" quat="0.281788 -0.648533 -0.648533 0.281788" type="mesh" rgba="0.752941 0.752941 0.752941 1" class="collision" mesh="Left_finger_rubber" friction="1.0"/>
+                      </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+
+            <!-- autogen <body name="Left_L4" pos="-0.01 0 0.1107" quat="0.999762 0 -0.0218149 0">
+              <inertial pos="-0.000775167 1.18348e-09 0.0401951" quat="1 0 -0.000433959 0" mass="0.0414352" diaginertia="2.23144e-05 1.394e-05 9.29223e-06"/>
+              <joint name="Left_J4" pos="0 0 0" axis="0 1 0" range="-1.571 -0.09" actuatorfrcrange="-50 50" damping="0.1"/>
+              <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.25098 0.25098 0.25098 1" class="collision" mesh="Left_L4"/>
+              <geom type="mesh" rgba="0.25098 0.25098 0.25098 1" mesh="Left_L4"/>
+            </body> -->
+            <body name="Left_L4" pos="-0.01 0 0.1107" quat="0.999762 0 -0.0218149 0">
+              <inertial pos="-0.000775167 1.18348e-09 0.0401951" quat="1 0 -0.000433959 0" mass="0.0414352" diaginertia="2.23144e-05 1.394e-05 9.29223e-06"/>
+              <joint name="Left_J4" pos="0 0 0" axis="0 -1 0" class="J4_L4"/>
+              <geom class="visual" mesh="Left_L4" material="black"/>
+              <geom class="collision" mesh="Left_L4"/>
+            </body>
+
+            <!--autogen: <body name="Right_L1" pos="0.024 0 0.0957" quat="0 -0.0218326 0 -0.999762">
+              <inertial pos="9.39041e-08 -3.34855e-09 0.0211388" quat="0.707107 0.707107 0.000433452 -0.000433452" mass="0.020296" diaginertia="6.30267e-06 3.87088e-06 2.92634e-06"/>
+              <joint name="Right_J1" pos="0 0 0" axis="0 -1 0" range="-1.571 1.571" actuatorfrcrange="-50 50" damping="0.1"/>
+              <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.25098 0.25098 0.25098 1" class="collision" mesh="Right_L1"/>
+              <geom type="mesh" rgba="0.25098 0.25098 0.25098 1" mesh="Right_L1"/> -->
+            <body name="Right_L1" pos="0.024 0 0.0957" quat="0 -0.0218326 0 -0.999762">
+              <inertial pos="9.39041e-08 -3.34855e-09 0.0211388" quat="0.707107 0.707107 0.000433452 -0.000433452" mass="0.020296" diaginertia="6.30267e-06 3.87088e-06 2.92634e-06"/>
+              <joint name="Right_J1" pos="0 0 0" axis="0 -1 0" class="J1_L1"/>
+              <geom class="visual" mesh="Right_L1" material="black"/>
+              <geom class="collision" mesh="Right_L1"/>
+
+              <!--autogen: <body name="Right_L2" pos="0 0 0.034">
+                <inertial pos="-0.000647192 -2.92504e-09 0.0156751" quat="0.706829 0.706825 0.0198903 -0.0198901" mass="0.0233775" diaginertia="4.19732e-06 2.50182e-06 2.33741e-06"/>
+                <joint name="Right_J2" pos="0 0 0" axis="0 -1 0" range="-1.571 0.000" actuatorfrcrange="-50 50" damping="0.1" stiffness="0.05" springref="20.62" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+                <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.25098 0.25098 0.25098 1" class="collision" mesh="Right_L2"/>
+                <geom type="mesh" rgba="0.25098 0.25098 0.25098 1" mesh="Right_L2"/>           -->
+              <body name="Right_L2" pos="0 0 0.034">
+                <inertial pos="-0.000647192 -2.92504e-09 0.0156751" quat="0.706829 0.706825 0.0198903 -0.0198901" mass="0.0233775" diaginertia="4.19732e-06 2.50182e-06 2.33741e-06"/>
+                <joint name="Right_J2" pos="0 0 0" axis="0 -1 0" class="J2_L2"/>
+                <geom class="visual" mesh="Right_L2" material="black"/>
+                <geom class="collision" mesh="Right_L2"/>
+
+                <!--autogen <body name="Right_L3" pos="0 0 0.034" quat="0.922094 0 0.386967 0">
+                  <inertial pos="-0.0044967 -6.88171e-11 0.025979" quat="0.986589 0 -0.163226 0" mass="0.0444524" diaginertia="1.51863e-05 1.40838e-05 3.48549e-06"/>
+                  <joint name="Right_J3" pos="0 0 0" axis="0 -1 0" range="-1.571 0.000" actuatorfrcrange="-50 50" damping="0.1" solimplimit="0.95 0.99 0.001" solreflimit="0.005 1"/>
+                  <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.25098 0.25098 0.25098 1" class="collision" mesh="Right_L3"/>
+                  <geom type="mesh" rgba="0.25098 0.25098 0.25098 1" mesh="Right_L3"/> -->
+                <body name="Right_L3" pos="0 0 0.034" quat="0.922094 0 0.386967 0">
+                  <inertial pos="-0.0044967 -6.88171e-11 0.025979" quat="0.986589 0 -0.163226 0" mass="0.0444524" diaginertia="1.51863e-05 1.40838e-05 3.48549e-06"/>
+                  <joint name="Right_J3" pos="0 0 0" axis="0 -1 0" class="J3_L3"/>
+                  <geom class="visual" mesh="Right_L3" material="black"/>
+                  <geom class="collision" mesh="Right_L3"/>
+
+                  <body name="Right_finger_plate">  
+                    <geom pos="0.000145846 0 0.0247601" quat="0.648533 0.28179 0.28179 0.648533" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.25098 0.25098 0.25098 1" mesh="Right_finger_plate"/>
+                    <geom pos="0.000145846 0 0.0247601" quat="0.648533 0.28179 0.28179 0.648533" type="mesh" rgba="0.25098 0.25098 0.25098 1" class="collision" mesh="Right_finger_plate" friction="1.0"/>
+                      <body name="Right_finger_rubber">
+                        <geom pos="0.0111108 0 0.0349958" quat="0.648533 -0.28179 0.28179 -0.648533" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.752941 0.752941 0.752941 1" mesh="Right_finger_rubber"/>
+                        <geom pos="0.0111108 0 0.0349958" quat="0.648533 -0.28179 0.28179 -0.648533" type="mesh" rgba="0.752941 0.752941 0.752941 1" class="collision" mesh="Right_finger_rubber" friction="1.0"/>
+                      </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+            <!--autogen <body name="Right_L4" pos="0.01 0 0.1107" quat="0 -0.0218149 0 -0.999762">
+              <inertial pos="-0.000775167 1.18348e-09 0.0401951" quat="1 0 -0.000433959 0" mass="0.0414352" diaginertia="2.23144e-05 1.394e-05 9.29223e-06"/>
+              <joint name="Right_J4" pos="0 0 0" axis="0 -1 0" range="0.09 1.571" actuatorfrcrange="-50 50" damping="0.1"/>
+              <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.25098 0.25098 0.25098 1" class="collision" mesh="Right_L4"/>
+              <geom type="mesh" rgba="0.25098 0.25098 0.25098 1" mesh="Right_L4"/>
+            </body> -->
+            <body name="Right_L4" pos="0.01 0 0.1107" quat="0 -0.0218149 0 -0.999762">
+              <inertial pos="-0.000775167 1.18348e-09 0.0401951" quat="1 0 -0.000433959 0" mass="0.0414352" diaginertia="2.23144e-05 1.394e-05 9.29223e-06"/>
+              <joint name="Right_J4" pos="0 0 0" axis="0 -1 0" class="J4_L4"/>
+              <geom class="visual" mesh="Right_L4" material="black"/>
+              <geom class="collision" mesh="Right_L4"/>
+            </body>
+          </body>
+
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <contact>
+    <exclude body1="base_link" body2="Left_L1"/>
+    <exclude body1="base_link" body2="Left_L4"/>
+    <exclude body1="base_link" body2="Right_L1"/>
+    <exclude body1="base_link" body2="Right_L4"/>  
+
+    <exclude body1="Left_L1" body2="Left_L2"/>
+    <exclude body1="Right_L1" body2="Right_L2"/>
+
+    <exclude body1="Left_L2" body2="Left_L3"/>
+    <exclude body1="Right_L2" body2="Right_L3"/>
+
+    <exclude body1="Left_L3" body2="Left_L4"/>
+    <exclude body1="Right_L3" body2="Right_L4"/>
+
+    <exclude body1="Left_L4" body2="Left_L1"/>
+    <exclude body1="Right_L4" body2="Right_L1"/>
+    <exclude body1="Left_L4" body2="Left_L2"/>
+    <exclude body1="Right_L4" body2="Right_L2"/>
+
+
+    <exclude body1="Left_finger_plate" body2="Left_L4"/>
+    <exclude body1="Right_finger_plate" body2="Right_L4"/>
+
+    <exclude body1="Left_finger_rubber" body2="Left_L4"/>
+    <exclude body1="Right_finger_rubber" body2="Right_L4"/>
+
+    <exclude body1="link_001" body2="link_002"/>
+
+  </contact>
+
+  <tendon>
+    <fixed name="LnR_J1_split">
+      <joint joint="Left_J1" coef="0.5"/>
+      <joint joint="Right_J1" coef="0.5"/>
+    </fixed>
+  </tendon>
+
+  <equality>
+    <connect anchor="0 0 0.068" body1="Left_L4" body2="Left_L3" solimp="0.95 0.99 0.001" solref="0.005 1"/>
+    <connect anchor="0 0 0.068" body1="Right_L4" body2="Right_L3" solimp="0.95 0.99 0.001" solref="0.005 1"/>
+  </equality>
+  <!-- use equility to connect L4 and L3 bodies to form a close chain, anchor point is (0,0,0.068) on body1
+       which is the upper shaft center of L4 (L4 length is 68mm)-->
+
+  <actuator>
+    <general class="eg01" name="L1J1_actuator" tendon="LnR_J1_split" forcerange="-50 50" ctrlrange="-40 40"
+      gainprm="0.8 0 0" biasprm="0 0 -10"/>
+  </actuator>
+  <!-- ^
+      affine gain_term = gainprm[0] + gainprm[1]*length + gainprm[2]*velocity 
+      affine bias_term = biasprm[0] + biasprm[1]*length + biasprm[2]*velocity
+      I guess control_output = gain_term*control_input + bias_term = 0.314*Len + (0 -100*Len-10*Vel)
+      I tried change -10 to other numbers, they made the motion jerky. 
+      I tried change the -100 to 0, it led to a relaxing initial effort, the finger opened by the object opon resetting.
+      I tried chagne the 0.314 to 0, and it showed no movement.           
+      Finnally change to force = 0.8*Len + (0 -0*Len-10*Vel)
+      -->
+</mujoco>

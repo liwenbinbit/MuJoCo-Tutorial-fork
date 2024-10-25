@@ -1,5 +1,6 @@
 <mujoco model="eg01_P5_5_sw2urdf scene">
-  <include file="eg01p5_5_mjmodel.xml"/>
+  <!-- <include file="eg01p5_5_mjmodel.xml"/> -->
+  <include file="eg01p5_5_mjmodel_on_manipulator.xml"/>
 
   <!-- Add some fluid viscosity to prevent the hanging box from jiggling forever -->
   <option viscosity="0.5"/>
@@ -25,7 +26,7 @@
     <camera name="fixed" pos="0 -0.8 0.5" xyaxes="1 0 0 0 1 2"/>
     <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
 
-    <geom name="floor_mount" type="cylinder" fromto="0 0 0 0 0 0.02" size=".1"/>
+    <!-- <geom name="floor_mount" type="cylinder" fromto="0 0 0 0 0 0.02" size=".1"/>
     <body name="link_001" pos="0 0 0.6">
       <geom name="link_001_zpost" type="box" size="0.025 0.025 0.6" rgba="1 0 0 1"/>
       <body name="link_002" pos="0 0 0.5">
@@ -37,7 +38,7 @@
           <geom name="flange_mount" type="cylinder" fromto="0 0 0 0 0 -0.06" size="0.04"/>
         </body>
       </body>
-    </body>
+    </body> -->
 
   </worldbody>
 
