@@ -77,10 +77,20 @@
 
   <worldbody>
     <geom name="floor_mount" type="cylinder" fromto="0 0 0.02 0 0 0" size=".1" rgba="1 1 1 0.8"/>
+    <body name="obj_vertical_cylinder">
+      <freejoint/>
+      <geom name="vertical_cylinder" type="cylinder" fromto="0 0.4 0.04 0 0.4 0" size=".03" rgba="1 0 1 0.8" friction="1.0 1.0 1.0" solimp="0.95 0.99 0.002" solref="0.004 1" priority="1" mass="0.2"/>
+    </body>
+
+    <!-- <body name="obj_box1" pos="0 0.4 0">
+      <freejoint/>
+      <geom name="box1" type="box" size="0.02 0.02 0.02" rgba="1 0 1 0.8" friction="1.0 1.0 1.0" solimp="0.95 0.99 0.002" solref="0.004 1" priority="1" mass="0.2"/>
+    </body> -->
+    
     <body name="link_001" pos="0 0 0.6">
       <geom name="link_001_zpost" type="box" size="0.025 0.025 0.6" rgba="1 0 0 0.8"/>
       <body name="link_002" pos="0 0 0">
-        <joint name="slide_joint" type="slide" range="-0.3 0.3" axis="0 0 1" pos="0 0 0" damping="300.0"/>
+        <joint name="slide_joint" type="slide" range="-0.4 0.6" axis="0 0 1" pos="0 0 0.1" damping="300.0"/>
         <geom name="link_002_ypost" type="capsule" fromto="0 0 0 0 0.4 0" size="0.025" rgba="0 1 0 1"/>
         <body name="link_003" pos="0 0.4 0">
           <joint name="ball_joint" type="ball" pos="0 0 0" damping="5"/>
@@ -146,7 +156,7 @@
                     <geom pos="0.000145846 0 0.0247601" quat="0.281788 -0.648533 -0.648533 0.281788" type="mesh" rgba="0.25098 0.25098 0.25098 0.5" class="collision" mesh="Left_finger_plate" friction="1.0"/>
                       <body name="Left_finger_rubber">
                         <geom pos="0.000145846 0 0.0247601" quat="0.281788 -0.648533 -0.648533 0.281788" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.752941 0.752941 0.752941 1" mesh="Left_finger_rubber"/>
-                        <geom pos="0.000145846 0 0.0247601" quat="0.281788 -0.648533 -0.648533 0.281788" type="mesh" rgba="0.752941 0.752941 0.752941 1" class="collision" mesh="Left_finger_rubber" friction="1.0"/>
+                        <geom pos="0.000145846 0 0.0247601" quat="0.281788 -0.648533 -0.648533 0.281788" type="mesh" rgba="0.752941 0.752941 0.752941 1" class="collision" mesh="Left_finger_rubber" friction="1.0 1.0 1.0" solimp="0.50 0.50 0.002" solref="0.004 1" priority="1"/>
                       </body>
                   </body>
                 </body>
@@ -204,7 +214,7 @@
                     <geom pos="0.000145846 0 0.0247601" quat="0.648533 0.28179 0.28179 0.648533" type="mesh" rgba="0.25098 0.25098 0.25098 1" class="collision" mesh="Right_finger_plate" friction="1.0"/>
                       <body name="Right_finger_rubber">
                         <geom pos="0.0111108 0 0.0349958" quat="0.648533 -0.28179 0.28179 -0.648533" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.752941 0.752941 0.752941 1" mesh="Right_finger_rubber"/>
-                        <geom pos="0.0111108 0 0.0349958" quat="0.648533 -0.28179 0.28179 -0.648533" type="mesh" rgba="0.752941 0.752941 0.752941 1" class="collision" mesh="Right_finger_rubber" friction="1.0"/>
+                        <geom pos="0.0111108 0 0.0349958" quat="0.648533 -0.28179 0.28179 -0.648533" type="mesh" rgba="0.752941 0.752941 0.752941 1" class="collision" mesh="Right_finger_rubber" friction="1.0 1.0 1.0" solimp="0.50 0.50 0.002" solref="0.004 1" priority="1"/>
                       </body>
                   </body>
                 </body>
@@ -276,38 +286,27 @@
 
   <actuator> 
     <!-- #0 -->
-    <general class="eg01" name="L1J1_actuator" tendon="LnR_J1_split" forcerange="-50 50" ctrlrange="-40 40"
-      gainprm="0.8 0 0" biasprm="0 0 -10"/>
+    <general class="eg01" name="L1J1_actuator" tendon="LnR_J1_split" forcerange="-50 50" ctrlrange="-80 80"
+      gainprm="0.4 0 0" biasprm="0 0 -10"/>
   </actuator>
+  
   <actuator>
     <!-- #1 -->
-    <velocity joint="slide_joint" kv="1" name="vel_actuator"/>
+    <position joint="slide_joint" name="pos_actuator_slider" kp="500" gear='1' ctrlrange="-0.28 0.6"/>
   </actuator>
+
   <actuator>
     <!-- #2,3,4 -->
-    <!-- Three motors for control around each axis -->
-    <motor joint="ball_joint" gear="1 0 0" name="motor_x"/>
-    <motor joint="ball_joint" gear="0 1 0" name="motor_y"/>
-    <motor joint="ball_joint" gear="0 0 1" name="motor_z"/>
-  </actuator>
-  <actuator>
-    <!-- #5,6,7 -->
     <!-- Position servos for orientation control -->
     <position joint="ball_joint" kp="20" gear="1 0 0" name="pos_x"/>
     <position joint="ball_joint" kp="20" gear="0 1 0" name="pos_y"/>
     <position joint="ball_joint" kp="20" gear="0 0 1" name="pos_z"/>
-    <!-- #8,9,10 -->
-    <position joint="ball_joint" kp="20" gear="-1 0 0" name="pos_x_"/>
-    <position joint="ball_joint" kp="20" gear="0 -1 0" name="pos_y_"/>
-    <position joint="ball_joint" kp="20" gear="0 0 -1" name="pos_z_"/>
   </actuator>
-  <!-- ^
-      affine gain_term = gainprm[0] + gainprm[1]*length + gainprm[2]*velocity 
-      affine bias_term = biasprm[0] + biasprm[1]*length + biasprm[2]*velocity
-      I guess control_output = gain_term*control_input + bias_term = 0.314*Len + (0 -100*Len-10*Vel)
-      I tried change -10 to other numbers, they made the motion jerky. 
-      I tried change the -100 to 0, it led to a relaxing initial effort, the finger opened by the object opon resetting.
-      I tried chagne the 0.314 to 0, and it showed no movement.           
-      Finnally change to force = 0.8*Len + (0 -0*Len-10*Vel)
-      -->
+
+  <!-- <actuator>
+    #5,6,7 Three motors for control around each axis
+    <motor joint="ball_joint" gear="1 0 0" name="motor_x"/>
+    <motor joint="ball_joint" gear="0 1 0" name="motor_y"/>
+    <motor joint="ball_joint" gear="0 0 1" name="motor_z"/>
+  </actuator> -->  
 </mujoco>
