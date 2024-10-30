@@ -76,10 +76,10 @@
   </default>  
 
   <worldbody>
-    <geom name="floor_mount" type="cylinder" fromto="0 0 0.02 0 0 0" size=".1" rgba="1 1 1 0.8"/>
+    <geom name="floor_mount" type="cylinder" fromto="0 0 0.02 0 0 0" size=".1" rgba="1 1 1 1"/>
     <body name="obj_vertical_cylinder">
       <freejoint/>
-      <geom name="vertical_cylinder" type="cylinder" fromto="0 0.4 0.04 0 0.4 0" size=".03" rgba="1 0 1 0.8" friction="1.0 1.0 1.0" solimp="0.95 0.99 0.002" solref="0.004 1" priority="1" mass="0.2"/>
+      <geom name="vertical_cylinder" type="cylinder" fromto="0 0.4 0.04 0 0.4 0" size=".03" rgba="1 0 1 1" friction="1.0 1.0 1.0" solimp="0.95 0.99 0.002" solref="0.004 1" priority="1" mass="0.2"/>
     </body>
 
     <!-- <body name="obj_box1" pos="0 0.4 0">
@@ -286,8 +286,8 @@
 
   <actuator> 
     <!-- #0 -->
-    <general class="eg01" name="L1J1_actuator" tendon="LnR_J1_split" forcerange="-50 50" ctrlrange="-80 80"
-      gainprm="0.4 0 0" biasprm="0 0 -10"/>
+    <general class="eg01" name="L1J1_actuator" tendon="LnR_J1_split" forcerange="-50 50" ctrlrange="-40 40"
+      gainprm="0.8 0 0" biasprm="0 0 -10"/>
   </actuator>
   
   <actuator>

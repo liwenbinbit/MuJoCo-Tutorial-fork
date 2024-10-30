@@ -1,3 +1,12 @@
 Wed Oct 16 15:16:59 2024
 WARNING: Nan, Inf or huge value in QACC at DOF 5. The simulation is unstable. Time = 8.5420.
 
+Tue Oct 29 10:41:42 2024
+WARNING: Insufficient arena memory for the number of constraints generated. Increase arena memory allocation above 14M bytes. Time = 43.2460.
+
+Tue Oct 29 14:07:35 2024
+WARNING: Inertia matrix is too close to singular at DOF 5. Check model. Time = 20.8520.
+
+Tue Oct 29 14:07:35 2024
+WARNING: Nan, Inf or huge value in QVEL at DOF 5. The simulation is unstable. Time = 20.8540.
+
