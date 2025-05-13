@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="HX01P1_2_URDF_2025_04_25">
+  <mujoco>
+    <compiler meshdir="..\meshes" balanceinertia="false" discardvisual="false"/>
+  </mujoco>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.00314321543381847 1.13854543315466E-05 -0.0469933358701324"
+        rpy="0 0 0" />
+      <mass
+        value="0.411547465045794" />
+      <inertia
+        ixx="0.000457197745587714"
+        ixy="-1.45152611155004E-05"
+        ixz="-9.30884132062933E-06"
+        iyy="0.000528006291368628"
+        iyz="-7.83914805263515E-05"
+        izz="0.000353375974966479" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HX01P1_2_URDF_2025_04_25/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 0.25" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HX01P1_2_URDF_2025_04_25/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Finger1_MCP_Knuckel">
+    <inertial>
+      <origin
+        xyz="0.0421686696386719 -0.015426048645104 -0.0466060478506438"
+        rpy="0 0 0" />
+      <mass
+        value="0.00436140273842147" />
+      <inertia
+        ixx="1.42159895349904E-07"
+        ixy="-7.36939313995797E-10"
+        ixz="1.48367569815417E-09"
+        iyy="1.59816244339232E-07"
+        iyz="6.12196033300201E-11"
+        izz="1.59722430249032E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HX01P1_2_URDF_2025_04_25/meshes/Finger1_MCP_Knuckel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HX01P1_2_URDF_2025_04_25/meshes/Finger1_MCP_Knuckel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint#1_finger1_abad"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Finger1_MCP_Knuckel" />
+    <axis
+      xyz="-0.0871557427476608 0.0871557427476628 -0.992374804704456" />
+    <limit
+      lower="-2.1"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Finger1_Proxi_Phalanx">
+    <inertial>
+      <origin
+        xyz="8.04256704604878E-06 -0.00154315690861876 0.0237707606585844"
+        rpy="0 0 0" />
+      <mass
+        value="0.0202104726562832" />
+      <inertia
+        ixx="5.32127160366845E-06"
+        ixy="2.0735720988433E-10"
+        ixz="2.44269644006269E-09"
+        iyy="4.93448483616243E-06"
+        iyz="1.2903336924453E-06"
+        izz="3.09191027862971E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HX01P1_2_URDF_2025_04_25/meshes/Finger1_Proxi_Phalanx.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HX01P1_2_URDF_2025_04_25/meshes/Finger1_Proxi_Phalanx.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint#2_finger1_flex1"
+    type="revolute">
+    <origin
+      xyz="0.0486401551960459 -0.0151539437372638 -0.0471500023683496"
+      rpy="-1.65500964152168 0.0905390900790199 -1.53647622029557" />
+    <parent
+      link="Finger1_MCP_Knuckel" />
+    <child
+      link="Finger1_Proxi_Phalanx" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0"
+      upper="2.1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Finger1_Dist_Phalanx">
+    <inertial>
+      <origin
+        xyz="4.96680859477031E-05 -0.010124035284097 0.0165770900777064"
+        rpy="0 0 0" />
+      <mass
+        value="0.0176550868832926" />
+      <inertia
+        ixx="4.02684646627818E-06"
+        ixy="-5.48100382854274E-09"
+        ixz="-8.51961540817579E-09"
+        iyy="2.76990689495446E-06"
+        iyz="1.27524978556554E-06"
+        izz="3.12075000495327E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HX01P1_2_URDF_2025_04_25/meshes/Finger1_Dist_Phalanx.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HX01P1_2_URDF_2025_04_25/meshes/Finger1_Dist_Phalanx.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint#3_finger1_flex2"
+    type="revolute">
+    <origin
+      xyz="0 -0.0237880345493973 0.0617490033302251"
+      rpy="0.447125638688997 0 0" />
+    <parent
+      link="Finger1_Proxi_Phalanx" />
+    <child
+      link="Finger1_Dist_Phalanx" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="0"
+      upper="2.1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Finger2_Proxi_Phalanx">
+    <inertial>
+      <origin
+        xyz="8.03941874995967E-06 0.00913751624479266 0.0219985298361151"
+        rpy="0 0 0" />
+      <mass
+        value="0.0202104889338019" />
+      <inertia
+        ixx="5.32127790828749E-06"
+        ixy="1.2640319047297E-09"
+        ixz="2.09720636677861E-09"
+        iyy="5.59777233381563E-06"
+        iyz="5.34443481552869E-08"
+        izz="2.42862441395025E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HX01P1_2_URDF_2025_04_25/meshes/Finger2_Proxi_Phalanx.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HX01P1_2_URDF_2025_04_25/meshes/Finger2_Proxi_Phalanx.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint#4_finger2_flex1"
+    type="revolute">
+    <origin
+      xyz="0.0281330246557196 -0.00799999999999999 0.0129505310751928"
+      rpy="0 0.0872664625997165 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Finger2_Proxi_Phalanx" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0"
+      upper="2.1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Finger2_Dist_Phalanx">
+    <inertial>
+      <origin
+        xyz="4.96596942105298E-05 0.00714087338374853 0.0180639919901678"
+        rpy="0 0 0" />
+      <mass
+        value="0.0176551623115758" />
+      <inertia
+        ixx="4.02689478826306E-06"
+        ixy="-1.01044561746007E-08"
+        ixz="-7.45981723447978E-10"
+        iyy="4.21968522379183E-06"
+        iyz="-1.82116754516754E-07"
+        izz="1.67102249222128E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HX01P1_2_URDF_2025_04_25/meshes/Finger2_Dist_Phalanx.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HX01P1_2_URDF_2025_04_25/meshes/Finger2_Dist_Phalanx.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint#5_finger2_flex2"
+    type="revolute">
+    <origin
+      xyz="0 0.00600000000000033 0.0659"
+      rpy="0 0 0" />
+    <parent
+      link="Finger2_Proxi_Phalanx" />
+    <child
+      link="Finger2_Dist_Phalanx" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="0"
+      upper="2.1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Finger3_MCP_Knuckel">
+    <inertial>
+      <origin
+        xyz="4.95757603306141E-07 4.95757603158689E-07 0.00650000000000001"
+        rpy="0 0 0" />
+      <mass
+        value="0.00436140331617378" />
+      <inertia
+        ixx="1.59847453396862E-07"
+        ixy="-7.49873788616909E-13"
+        ixz="-5.07470404925871E-12"
+        iyy="1.59847453396862E-07"
+        iyz="5.0747040492634E-12"
+        izz="1.42005296546262E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HX01P1_2_URDF_2025_04_25/meshes/Finger3_MCP_Knuckel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HX01P1_2_URDF_2025_04_25/meshes/Finger3_MCP_Knuckel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint#6_finger3_abad"
+    type="revolute">
+    <origin
+      xyz="-0.027 -0.00799999999999999 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Finger3_MCP_Knuckel" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.79"
+      upper="0.26"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Finger3_Proxi_Phalanx">
+    <inertial>
+      <origin
+        xyz="8.04117973512639E-06 0.0100165249953892 0.0216124776566758"
+        rpy="0 0 0" />
+      <mass
+        value="0.0202104720704891" />
+      <inertia
+        ixx="5.32127708117865E-06"
+        ixy="1.34776056207346E-09"
+        ixz="2.04474931025199E-09"
+        iyy="5.59692981103583E-06"
+        iyz="-7.4326508231126E-08"
+        izz="2.42946644189107E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HX01P1_2_URDF_2025_04_25/meshes/Finger3_Proxi_Phalanx.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HX01P1_2_URDF_2025_04_25/meshes/Finger3_Proxi_Phalanx.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint#7_finger3_flex1"
+    type="revolute">
+    <origin
+      xyz="0 0 0.013"
+      rpy="0 0 0" />
+    <parent
+      link="Finger3_MCP_Knuckel" />
+    <child
+      link="Finger3_Proxi_Phalanx" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0"
+      upper="2.1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Finger3_Dist_Phalanx">
+    <inertial>
+      <origin
+        xyz="4.96543147663793E-05 0.00640718478870799 0.0183370776542785"
+        rpy="0 0 0" />
+      <mass
+        value="0.017655175308132" />
+      <inertia
+        ixx="4.02689920264773E-06"
+        ixy="-1.00663492422049E-08"
+        ixz="-1.15336444118468E-09"
+        iyy="4.23021615454477E-06"
+        iyz="-7.8911041266525E-08"
+        izz="1.66049607192739E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HX01P1_2_URDF_2025_04_25/meshes/Finger3_Dist_Phalanx.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://HX01P1_2_URDF_2025_04_25/meshes/Finger3_Dist_Phalanx.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint#8_finger3_flex2"
+    type="revolute">
+    <origin
+      xyz="0 0.00865057582363768 0.0656047066750251"
+      rpy="-0.0403060398718764 0 0" />
+    <parent
+      link="Finger3_Proxi_Phalanx" />
+    <child
+      link="Finger3_Dist_Phalanx" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="0"
+      upper="2.1"
+      effort="0"
+      velocity="0" />
+  </joint>
+</robot>

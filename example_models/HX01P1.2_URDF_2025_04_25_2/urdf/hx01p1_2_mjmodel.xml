@@ -1,0 +1,97 @@
+<mujoco model="HX01P1.2_URDF_2025_04_25_2">
+  <compiler angle="radian" meshdir="..\meshes/"/>
+
+  <asset>
+    <mesh name="base_link" content_type="model/stl" file="base_link.STL"/>
+    <mesh name="Finger1_MCP_Knuckel" content_type="model/stl" file="Finger1_MCP_Knuckel.STL"/>
+    <mesh name="Finger1_Proxi_Phalanx" content_type="model/stl" file="Finger1_Proxi_Phalanx.STL"/>
+    <mesh name="Finger1_Dist_Phalanx" content_type="model/stl" file="Finger1_Dist_Phalanx.STL"/>
+    <mesh name="Finger2_Proxi_Phalanx" content_type="model/stl" file="Finger2_Proxi_Phalanx.STL"/>
+    <mesh name="Finger2_Dist_Phalanx" content_type="model/stl" file="Finger2_Dist_Phalanx.STL"/>
+    <mesh name="Finger3_MCP_Knuckel" content_type="model/stl" file="Finger3_MCP_Knuckel.STL"/>
+    <mesh name="Finger3_Proxi_Phalanx" content_type="model/stl" file="Finger3_Proxi_Phalanx.STL"/>
+    <mesh name="Finger3_Dist_Phalanx" content_type="model/stl" file="Finger3_Dist_Phalanx.STL"/>
+  </asset>
+
+  <worldbody>
+    <body name="hand_base" pos="0 0 0">
+      <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.101961 0.101961 0.101961 1" mesh="base_link"/>
+      <geom type="mesh" rgba="0.101961 0.101961 0.101961 1" mesh="base_link"/>
+      <body name="Finger1_MCP_Knuckel">
+        <inertial pos="0.0451687 -0.000240164 0.0498681" quat="0.47354 0.520168 0.525128 0.478983" mass="0.0043614" diaginertia="1.59847e-07 1.59847e-07 1.42005e-07"/>
+        <joint name="joint#1_finger1_abad" pos="0 0 0" axis="-0.0871557 -0.257513 -0.962336" range="0 1.4" damping = "0.2"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="Finger1_MCP_Knuckel"/>
+        <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Finger1_MCP_Knuckel"/>
+        <body name="Finger1_Proxi_Phalanx" pos="0.0516402 -0.000170513 0.0492639" quat="0.413415 -0.588366 0.447584 -0.531585">
+          <inertial pos="8.04257e-06 -0.00154316 0.0237708" quat="0.688898 0.166635 -0.166347 0.685552" mass="0.0202105" diaginertia="5.59868e-06 5.32127e-06 2.42772e-06"/>
+          <joint name="joint#2_finger1_flex1" pos="0 0 0" axis="1 0 0" range="0 2.1" damping = "0.2"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="Finger1_Proxi_Phalanx"/>
+          <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Finger1_Proxi_Phalanx"/>
+          <body name="Finger1_Dist_Phalanx" pos="0 -0.023788 0.061749" quat="0.975114 0.221705 0 0">
+            <inertial pos="4.96681e-05 -0.010124 0.0165771" quat="0.627743 0.28577 -0.299589 0.659181" mass="0.0176551" diaginertia="4.23307e-06 4.02636e-06 1.65807e-06"/>
+            <joint name="joint#3_finger1_flex2" pos="0 0 0" axis="1 0 0" range="0 2.1" damping = "0.2"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="Finger1_Dist_Phalanx"/>
+            <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Finger1_Dist_Phalanx"/>
+          </body>
+        </body>
+      </body>
+
+      <body name="Finger2_Proxi_Phalanx" pos="0.031133 0.0271076 0.103293" quat="0.98387 -0.173483 0.0429567 -0.00757443">
+        <inertial pos="8.03942e-06 0.00913752 0.0219985" quat="0.708738 0.00572091 -0.0062002 0.705422" mass="0.0202105" diaginertia="5.59868e-06 5.32127e-06 2.42772e-06"/>
+        <joint name="joint#4_finger2_flex1" pos="0 0 0" axis="1 0 0" range="0 2.1" damping = "0.2"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="Finger2_Proxi_Phalanx"/>
+        <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Finger2_Proxi_Phalanx"/>
+        <body name="Finger2_Dist_Phalanx" pos="0 0.006 0.0659">
+          <inertial pos="4.96597e-05 0.00714087 0.018064" quat="0.689298 -0.0242493 0.0259036 0.723608" mass="0.0176552" diaginertia="4.23312e-06 4.02641e-06 1.65807e-06"/>
+          <joint name="joint#5_finger2_flex2" pos="0 0 0" axis="1 0 0" range="0 2.1" damping = "0.2"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="Finger2_Dist_Phalanx"/>
+          <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Finger2_Dist_Phalanx"/>
+        </body>
+      </body>
+
+      <body name="Finger3_MCP_Knuckel" pos="-0.024 0.0226782 0.0911236" quat="0.984808 -0.173648 0 0">
+        <inertial pos="4.95758e-07 4.95758e-07 0.0065" quat="1 0.000142211 0.000142205 2.02231e-08" mass="0.0043614" diaginertia="1.59847e-07 1.59847e-07 1.42005e-07"/>
+        <joint name="joint#6_finger3_abad" pos="0 0 0" axis="0 1 0" range="-0.79 0.26" damping = "0.2"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="Finger3_MCP_Knuckel"/>
+        <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Finger3_MCP_Knuckel"/>
+        <body name="Finger3_Proxi_Phalanx" pos="0 0 0.013">
+          <inertial pos="8.04118e-06 0.0100165 0.0216125" quat="0.708709 -0.00856249 0.00801643 0.705403" mass="0.0202105" diaginertia="5.59868e-06 5.32127e-06 2.42772e-06"/>
+          <joint name="joint#7_finger3_flex1" pos="0 0 0" axis="1 0 0" range="0 2.1" damping = "0.2"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="Finger3_Proxi_Phalanx"/>
+          <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Finger3_Proxi_Phalanx"/>
+          <body name="Finger3_Dist_Phalanx" pos="0 0.00865058 0.0656047" quat="0.999797 -0.0201517 0 0">
+            <inertial pos="4.96543e-05 0.00640718 0.0183371" quat="0.689647 -0.0103538 0.0113166 0.723984" mass="0.0176552" diaginertia="4.23312e-06 4.02641e-06 1.65807e-06"/>
+            <joint name="joint#8_finger3_flex2" pos="0 0 0" axis="1 0 0" range="0 2.1" damping = "0.2"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="0.792157 0.819608 0.933333 1" mesh="Finger3_Dist_Phalanx"/>
+            <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="Finger3_Dist_Phalanx"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <contact>
+    <exclude body1="hand_base" body2="Finger1_MCP_Knuckel"/>
+    <exclude body1="hand_base" body2="Finger3_MCP_Knuckel"/>
+    <exclude body1="hand_base" body2="Finger1_Proxi_Phalanx"/>
+    <exclude body1="hand_base" body2="Finger2_Proxi_Phalanx"/>
+    <exclude body1="hand_base" body2="Finger3_Proxi_Phalanx"/>
+    <exclude body1="hand_base" body2="Finger1_Dist_Phalanx"/>
+    <exclude body1="hand_base" body2="Finger2_Dist_Phalanx"/>
+    <exclude body1="hand_base" body2="Finger3_Dist_Phalanx"/>
+  </contact>  
+
+  <actuator>
+    <position name="Fg1_AbAd" joint="joint#1_finger1_abad" ctrlrange="0.0 1.4"/>
+    <position name="Fg1_Flex1" joint="joint#2_finger1_flex1" ctrlrange="0.0 2.1"/>
+    <position name="Fg1_Flex2" joint="joint#3_finger1_flex2" ctrlrange="0.0 2.1"/>
+
+    <position name="Fg2_Flex1" joint="joint#4_finger2_flex1" ctrlrange="0.0 2.1"/>
+    <position name="Fg3_Flex2" joint="joint#5_finger2_flex2" ctrlrange="0.0 2.1"/>
+
+    <position name="Fg3_AbAd" joint="joint#6_finger3_abad" ctrlrange="-0.79 0.26"/>
+    <position name="Fg3_Flex1" joint="joint#7_finger3_flex1" ctrlrange="0.0 2.1"/>
+    <position name="Fg4_Flex2" joint="joint#8_finger3_flex2" ctrlrange="0.0 2.1"/> 
+  </actuator>
+  
+</mujoco>
